@@ -20,7 +20,7 @@ Even F# coding environments exist online. Check out
 
 If you don't yet want to clutter your hard disk/desktop with another IDE you can follow along the daily F# snippets with one of the above lightweight REPL environments.
 
-And now... enter into the realm of F# on [day #1](https://github.com/ccdschool/fsharpdaybyday/week01/day01).
+And now... enter into the realm of F# on [day #1](week01/day01).
 
 ***
 
