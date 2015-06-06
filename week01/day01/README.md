@@ -14,9 +14,7 @@ If you use _printf_ (without the "n") then there will be no line break between s
 ## Simple function calls
 This was easy - as it was supposed to be. Still there is something to learn here: How to call a function in the Functional Programming language of F#.
 
-Just write the name of the function - _printfn_ in this example - followed by any parameters. No parentheses, no delimiters except spaces are required.[^f_parents]
-
-[^f_parents]: However, _printfn ("Hello, World!")_ will work just fine.
+Just write the name of the function - _printfn_ in this example - followed by any parameters. No parentheses, no delimiters except spaces are required. (However, _printfn ("Hello, World!")_ would work just fine.)
 
 Let's try this with 2 parameters:
 
