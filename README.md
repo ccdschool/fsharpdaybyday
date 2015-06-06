@@ -24,7 +24,7 @@ And now... enter into the realm of F# on [day #1](week01/day01).
 
 ***
 
-This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.de), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community with [currently 4000+ members](http://xing.com/net/ccd) in 2009 and have been teaching principles and practices for clean coding and fluent software production since then.
+This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.de), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community with [currently 4000+ members](http://xing.com/net/ccd) in 2009 and have been teaching principles and practices for clean coding and fluent software production since then to many hundred developers.
 
 ![](images/ccd-school_logo.jpeg)
 
