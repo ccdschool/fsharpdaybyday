@@ -65,7 +65,12 @@ So far you've primarily seen numeric operators and some boolean operators. Opera
 "Hello, " + "World!"
 ```
 
-Later you'll learn about more operators for other types.
+Later you'll learn about more operators for other types. Some are binary, some ternary, some unary like
+
+```
+-2
+not false
+```
 
 Even though operators have their precendences sometimes there is need for parentheses. Use them as usual in mathematical or logical expressions, e.g.
 
