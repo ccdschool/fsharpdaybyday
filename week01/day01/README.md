@@ -20,7 +20,7 @@ Just write the name of the function - _printfn_ in this example - followed by an
 
 Let's try this with 2 parameters:
 
-```
+```fsharp
 printfn "Hello, %s!" "Peter"
 ```
 
@@ -41,7 +41,7 @@ Read more about placeholders and output formatting in the [printf documentation]
 
 Finally a function call with even more parameters:
 
-```
+```fsharp
 printfn "%s, %d, %f, %b" "Hello!" 42 3.1415 true
 ```
 
@@ -66,13 +66,13 @@ If you want to use the backslash in your string prepend a @, e.g. @"c:\windows".
 
 By default strings and characters are encoded using Unicode. If you like them to be ASCII append a B at the end, e.g. 'a'B or 'abc'B. This gets them to be stored as _byte_ and _byte[]_ (_byte_ array).
 
-```
+```fsharp
 printfn "%A, %A, %A, %A" 'a' 'a'B "abc" "abc"B
 ```
 
 prints
 
-```
+```fsharp
 'a', 97uy, "abc", [|97uy; 98uy; 99uy|]
 ```
 

@@ -13,7 +13,7 @@ However, F# needs an operator function name to be enclosed in parentheses. That'
 
 Or to be more precise: F# needs the parentheses if you put the operator function name first like above. This works with other operators too:
 
-```
+```fsharp
 (-) 3 2
 (*) 3 2
 (/) 3 2 // = 1
@@ -27,7 +27,7 @@ You see, F# sports all sorts of common operators in usual form. But note a coupl
 
 First, both parameters to binary operators must be of the same time. See / above. If you tried
 
-```
+```fsharp
 (/) 3.0 2 // does not compile
 ```
 
@@ -41,7 +41,7 @@ It cannot be use like the other ones in parentheses, because (\* and \*) enclose
 
 But help is on its way. Or did you believe F# required you to use operators in such a cumbersome way? ;-) Of course it's possible to use binary operators as usual with infix notation:
 
-```
+```fsharp
 3 + 2
 3 - 2
 3 / 2
@@ -55,26 +55,26 @@ But help is on its way. Or did you believe F# required you to use operators in s
 
 Also as usual F# assigns operators a precedence:
 
-```
+```fsharp
 1.0 + 2.0 * 3.0 ** 4.0 = 163.0
 ```
 
 So far you've primarily seen numeric operators and some boolean operators. Operators exist for other values, too, though. Use + to concatenate strings, for example:
 
-```
+```fsharp
 "Hello, " + "World!"
 ```
 
 Later you'll learn about more operators for other types. Some are binary, some ternary, some unary like
 
-```
+```fsharp
 -2
 not false
 ```
 
 Even though operators have their precendences sometimes there is need for parentheses. Use them as usual in mathematical or logical expressions, e.g.
 
-```
+```fsharp
 (1.0 + 2.0) * 3.0
 
 1 <> 1 && (2 = 2 || 3 <> 4)
@@ -83,7 +83,7 @@ Even though operators have their precendences sometimes there is need for parent
 
 To finish your day's portion of F# here's how to print the results of expressions:
 
-```
+```fsharp
 printfn "%d" ((+) 3 2)
 printfn "%f" (3.0 ** 2.0)
 ```

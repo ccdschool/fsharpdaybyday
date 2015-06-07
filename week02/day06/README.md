@@ -3,7 +3,7 @@ I'm sure you're keen to finish the ["FizzBuzz" code kata](https://app.box.com/s/
 
 In C# or Java or Ruby you'd use some kind of loop to fizzbuzz all the numbers in the range from 1 to 100. Here's an example in C#:
 
-```
+```csharp
 for(var i=1; i<=100; i++) {
   var v = Fizzbuzz_number(i);
   Console.WriteLine(v)
@@ -16,7 +16,7 @@ That's what we want to apply today: We have a looping problem, so let's solve it
 
 You already know how to call a function. So you can do recursion, too. Almost at least. Here's the canonical recursion example: a factorial function. But it won't work, yet.
 
-```
+```fsharp
 let factorial n =
   if n <= 0 then
     1
@@ -26,7 +26,7 @@ let factorial n =
 
 The reason: You need to mark functions to be called recursively as such with _rec_ right after the _let_ keyword.
 
-```
+```fsharp
 let rec factorial n =
   if n <= 0 then
     1
@@ -44,7 +44,7 @@ The list in this case is defined as a range, e.g. from 1 until 100. 1 is the hea
 
 That probably sounds more complicated than it is, though. Better to see it in code. Here is a simple iteration function:
 
-```
+```fsharp
 let rec iter from until =
   if from < until then
     printfn "%d" from
@@ -63,7 +63,7 @@ So why not generalize this pattern? Iterations are all the same whether for "Fiz
 
 Here is a general iteration function for integer ranges:
 
-```
+```fsharp
 let rec iter f from until =
   if from < until then
     f from
@@ -93,8 +93,7 @@ It should be converted and printed.
 
 The final _fizzbuzz_ function hides this detail, of course. It defines the action for each number as a local function and iterates over a given range using _iter_.
 
-
-```
+```fsharp
 let fizzbuzz from until =
   let convert_number i =
     let v = fizzbuzz_number i

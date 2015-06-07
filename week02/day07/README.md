@@ -1,9 +1,9 @@
-# Day #6 - Lists
+# Day #7 - Lists
 As you saw yesterday it's possible to describe a collection of values using recursion. That's nice to know - but in many cases it's overkill. Why not write down the values directly as a collection, at least as long as it's not too many?
 
 This is what list literals are about. A list is a non-primitive type; it's a collection of values of the same type listed in a certain order. And it has its own literal syntax: write the list elements separated by ";" between square brackets. Some examples:
 
-```
+```fsharp
 let positive = [1; 2; 3]
 let abc = ["a"; "b"; "c"]
 let ops = [(fun x y -> x + y); (fun a b -> a * b); (-) ]
@@ -16,7 +16,7 @@ An empty list is denoted by [].
 
 To access a specific list item use the _Item()_ member function:
 
-```
+```fsharp
 printfn "%s" (abc.Item(1))
 printfn "%d" (ops.Item(0) 2 3)
 ```
@@ -29,7 +29,7 @@ The two most important operators for that are cons (::) and concatenate (@).
 
 Use cons to prepend a new head to a list, e.g.
 
-```
+```fsharp
 let positiveAnd0 = 0 :: positive
 let identChars = "_" :: "@" :: abc
 let names = "Peter" :: []
@@ -37,14 +37,14 @@ let names = "Peter" :: []
 
 Use concatenation to append one list to the end of another:
 
-```
+```fsharp
 let natural = [-3; -2; -1] @ positiveAnd0
 let powers = [1; 10; 100] @ [1; 2; 4; 8] @ [1; 16; 256; 4096]
 ```
 
 Note that lists are not sets. That means the value 1 occurrs three times in list _powers_. You can check this by printing the list using %A as the placeholder:
 
-```
+```fsharp
 printfn "%A" powers
 ```
 
@@ -57,19 +57,19 @@ Lists provide two additional properties: _Head_ and _Tail_.
 
 _Head_ returns the first item of a list. This prints 1:
 
-```
+```fsharp
 printfn "%d" ([1; 2; 3].Head)
 ``` 
 
 _Tail_ returns all items after the first as a list. This prints [2; 3]:
 
-```
+```fsharp
 printfn "%A" ([1; 2; 3]].Tail)
 ```
 
 With these properties in hand you can create, for example, a function _map_ to apply some function to all elements of a list creating a new list:
 
-```
+```fsharp
 let map f source =
   let rec map' f source dest =
     if source = [] then
@@ -83,7 +83,7 @@ let map f source =
 
 Map, well, maps elements of the source list to elements of a destination list. Example: Map integers to their squares:
 
-```
+```fsharp
 map (fun x -> x * x) positive
 ```
 
@@ -97,7 +97,7 @@ When calling itself, _map'_ passes on the mapping function, the remaining source
 
 This is how working on lists in F# typically looks like - if you need to implement it yourself. Fortunately, though, you don't have to all the time. F# comes with quite an assortment of built in list functions. They are available from the _List_ module like this:
 
-```
+```fsharp
 List.map (fun x -> x * x) [1; 2; 3]
 List.filter (fun x -> x % 2 = 0) [1; 2; 3]
 List.fold (fun s x -> s + x) 0 [1; 2; 3]
@@ -118,7 +118,7 @@ So far lists were initialized with a static literal. That's ok for small lists. 
 
 If those items belong to a range then it's easy to fill the list. Just apply the range operator:
 
-```
+```fsharp
 let positive = [1..3]
 let abc = ['a'..'c']
 ```
@@ -127,7 +127,7 @@ In list brackets write the lower bound of the range followed by .. and then the 
 
 And if you like it can even apply an increment you supply:
 
-```
+```fsharp
 let even = [2..2..10]
 ```
 
@@ -142,7 +142,7 @@ Then the range of numbers does not need to be produced algorithmically. Instead 
 
 Finally it seems a small refactoring is in order. Why not make number checking local to the _fizzbuzz_ function?
 
-```
+```fsharp
 let fizzbuzz numbers =
   let fizzbuzz_number n =
     let ``is fizz?`` n = n % 3 = 0
@@ -170,7 +170,7 @@ fizzbuzz [1..20]
 
 Speaking of refactoring... As it seems _fizzbuzz_ has two responsibilities: mapping numbers and printing the resulting list. The code would be cleaner if these aspects were separated. Maybe like this:
 
-```
+```fsharp
 let fizzbuzz numbers =
   let fizzbuzz_number n =
     let ``is fizz?`` n = n % 3 = 0
