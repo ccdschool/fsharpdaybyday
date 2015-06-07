@@ -1,4 +1,4 @@
-# Day #4
+# Day #4 - Naming values
 Today is an important day. You'll learn to gain control over your F# code. Because you can control of which you know the name. At least that's what fairy tales and lores of magic tell us; remember [Rumpelstiltskin](http://www.eastoftheweb.com/short-stories/UBooks/Rum.shtml)?
 
 Today we'll start naming things in F# programs. These are just values without a name:

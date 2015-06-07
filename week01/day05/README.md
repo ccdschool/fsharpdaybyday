@@ -1,4 +1,4 @@
-# Day #5
+# Day #5 - Simple decisions with if
 Programming is about data processing, i.e. calculating values and assigning them to variables. As you've seen, the first is true also for F#; but the latter is not really how you do things in Functional Programming languages. But don't let this worry you too much right now.
 
 As a small consolation today you'll meet an old aquaintant, a control structure like in any imperativ programming language. Meet the _if_ expression:
@@ -128,7 +128,10 @@ And since this was so easy, let's get rid of some code duplication in the testin
 
 ```
 let assert_result given expected =
-  printfn "%b" ((fizzbuzz_number given) = expected)
+  if (fizzbuzz_number given) = expected then
+    printfn "OK for %d: %s" given expected
+  else
+    printfn "FAILED for %d, expected %s" given expected
   
 assert_result 1 "1"
 assert_result 3 "Fizz"
