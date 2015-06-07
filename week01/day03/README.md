@@ -3,7 +3,7 @@ So far you have seen how to use some existing functions in F#. Now it's time to 
 
 In Functional Programming languages functions are values like integers and strings. So their values can also be written "inline". Here's a simple example:
 
-```
+```fsharp
 fun x y -> x + y
 ```
 
@@ -11,13 +11,13 @@ Yes, that's a function literal, it describes a value. This value can be passed a
 
 The syntax for function literals (or lambda expression) is:
 
-```
+```fsharp
 "fun" { formal_parameter } "->" function_body
 ```
 
 A value of a primitive type is just inert data. But a function value can become alive. Just call the function, e.g.
 
-```
+```fsharp
 (fun x y -> x + y) 2 3
 ```
 
@@ -25,7 +25,7 @@ Like with an operator put the function literal in parentheses and pass values fo
 
 Here's another example, this time including result display on standard output. Do you recognize the operation?
 
-```
+```fsharp
 printfn "%b" ((fun x y -> x && not y || not x && y) true false)
 ```
 
@@ -33,7 +33,7 @@ This function implement an XOR operator for bool values.
 
 Let me repeat: function literals are just values described using text. So the following basically is all the same:
 
-```
+```fsharp
 123
 "Hello!"
 true
@@ -48,13 +48,13 @@ This transformation is also visible in the function literal: The input is repres
 
 Strangely, though, the type of
 
-```
+```fsharp
 fun x y -> x + y
 ```
 
 is
 
-```
+```fsharp
 int -> int -> int
 ```
 
@@ -66,13 +66,13 @@ Remember: Functions are just values. That means, they can be combined to form ne
 
 Here's an analogy: How is this expression evaluated?
 
-```
+```fsharp
 2 * (3 + 4)
 ```
 
 First _3 + 4_ is calculated resulting in 7, then _2 * 7_ is calculated resulting in 14. Right?
 
-```
+```fsharp
 1. 2 * (3 + 4)
 2. 2 * 7
 3. 14
@@ -84,7 +84,7 @@ Now, the same can be done with F# functions. It's called partial application.
 
 Here's the addition function from above, but called in a slightly different way:
 
-```
+```fsharp
 ((fun x y -> x + y) 2) 3
 ```
 
@@ -100,7 +100,7 @@ A function is evaluated by replacing occurrences of formal parameters with actua
 
 Here's sequence of evaluation of the mathematical expression showing the types involved:
 
-```
+```fsharp
 2 * (3 + 4):
 
 int * (int + int)
@@ -110,7 +110,7 @@ int
 
 And here's the partial application of the function:
 
-```
+```fsharp
 ((fun x y -> x + y) 2) 3:
 
 ((int -> int -> int) int) int

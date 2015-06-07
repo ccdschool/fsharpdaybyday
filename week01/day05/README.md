@@ -3,14 +3,14 @@ Programming is about data processing, i.e. calculating values and assigning them
 
 As a small consolation today you'll meet an old aquaintant, a control structure like in any imperativ programming language. Meet the _if_ expression:
 
-```
+```fsharp
 let name = "Peter"
 if name = "Paul" then printfn "Hello, my friend!" else printfn "Hello, stranger!"
 ```
 
 This looks familiar, doesn't it? Even more, if I add some indentation:
 
-```
+```fsharp
 let name = "Peter"
 
 if name = "Paul" then 
@@ -25,7 +25,7 @@ But what looks like a statement in truth is still an expression. We're talking F
 
 The result of the _if_ function then is whatever the result is of the branch that go executed. The next example will make that more clear:
 
-```
+```fsharp
 let greeting name =
   if name = "Paul" then 
     "Hello, my friend!"
@@ -41,7 +41,7 @@ Whatever is indented below the let binding line forms the body of it. Of course 
 
 Since _if_ returns a result, both the _then_ and the _else_ branch need to be present and deliver a value of the same type. That's why
 
-```
+```fsharp
 let div a b =
   if b <> 0 then
     a / b // does not compile!
@@ -68,7 +68,7 @@ To be frank, to solve the whole problem there is a puzzle piece missing. You hav
 
 Nevertheless you can tackle the core problem. That is: Translate a single number into its "FizzBuzz value". Here's a walking skeleton for a stripped down version of the program.
 
-```
+```fsharp
 let fizzbuzz_number n =
   sprintf "%d" n
   
@@ -86,7 +86,7 @@ Note the _sprintf_ function which prints to a string where _printf_ prints to th
 
 But the real solution is not very complicated either:
 
-```
+```fsharp
 let fizzbuzz_number n =
   if n % 3 = 0 && n % 5 = 0 then
     "FizzBuzz"
@@ -104,7 +104,7 @@ Although this logic serves the purpose, it's arguably not clean, not DRY. Checki
 
 That can be improved by introducing functions for these checks:
 
-```
+```fsharp
 let fizzbuzz_number n =
   let ``is fizz?`` n = n % 3 = 0
   let ``is buzz?`` n = n % 5 = 0
@@ -126,7 +126,7 @@ That's it. Problem solved. Or at least the first part of the problem.
 
 And since this was so easy, let's get rid of some code duplication in the testing part of the program.
 
-```
+```fsharp
 let assert_result given expected =
   if (fizzbuzz_number given) = expected then
     printfn "OK for %d: %s" given expected
