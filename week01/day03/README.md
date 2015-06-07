@@ -9,7 +9,7 @@ fun x y -> x + y
 
 Yes, that's a function literal, it describes a value. This value can be passed around like a _float_ or a _bool_ value. Think of it as an array of bytes containing executable code.
 
-The syntax for function literals is:
+The syntax for function literals (or lambda expression) is:
 
 ```
 "fun" { formal_parameter } "->" function_body
