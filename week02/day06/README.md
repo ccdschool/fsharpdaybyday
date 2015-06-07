@@ -106,6 +106,8 @@ let fizzbuzz from until =
 fizzbuzz 1 100
 ```
 
+See [here](src/fizzbuzz.fs) for the full source code.
+
 ***
 
-Recursion and functions as parameters: What a day! That's two powerful techniques of Function Programming. Still, though, it seems iteration over a range of numbers should be easier than that, right? More on that tomorrow.
+Recursion and functions as parameters: What a day! That's two powerful techniques of Functional Programming. Still, though, it seems iteration over a range of numbers should be easier than that, right? More on that tomorrow.
