@@ -1,4 +1,4 @@
-# Day #2
+# Day #2 - Operators are functions
 Yesterday you learned how to call a simple function to write data to standard output. So far the data were constant values given as literals of different primitive data types.
 
 Today is going to change. Enter the world of data transformation using operators.

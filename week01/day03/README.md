@@ -1,4 +1,4 @@
-# Day #3
+# Day #3 - Functions as values
 So far you have seen how to use some existing functions in F#. Now it's time to learn how to define your own. Enter: function literals.
 
 In Functional Programming languages functions are values like integers and strings. So their values can also be written "inline". Here's a simple example:
