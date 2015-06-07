@@ -64,7 +64,7 @@ Read the full description [here](https://app.box.com/s/kvrd51oykrob44xv2t379k98a
 
 You probably already envison a solution to this problem in your regular programming language. But how to do it in F#?
 
-To be frank, to solve the whole problem there is a puzzle piece missing. You haven't seen how to do iterations over a list of numbers.
+To be frank, to solve the whole problem there is a puzzle piece missing. You haven't seen yet how to do iterations.
 
 Nevertheless you can tackle the core problem. That is: Translate a single number into its "FizzBuzz value". Here's a walking skeleton for a stripped down version of the program.
 
