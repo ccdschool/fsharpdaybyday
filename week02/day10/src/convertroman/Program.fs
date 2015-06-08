@@ -18,8 +18,7 @@ let main argv =
                 else if d = 'C' then 100
                 else if d = 'D' then 500
                 else                 1000
-
-            Array.map digit2value (roman.ToCharArray())
+            roman.ToCharArray() |> Array.map digit2value // |>
 
         let negate_smaller_values values =
             let nvalues = Array.copy values
@@ -27,19 +26,19 @@ let main argv =
                       [0..nvalues.Length-2]
             nvalues
         
-        let values = map_digits_to_values roman
-        let values' = negate_smaller_values values
-        Array.sum values'
+        roman |> map_digits_to_values
+              |> negate_smaller_values
+              |> Array.sum
 
 
     let convert_to_roman arabic = "XLII"
 
 
     if is_roman_number number_to_convert then
-      let arabic_number = convert_from_roman number_to_convert
-      printfn "%d" arabic_number
+      number_to_convert |> convert_from_roman
+                        |> printfn "%d"
     else
-      let roman_number = convert_to_roman number_to_convert
-      printfn "%s" roman_number
+      number_to_convert |> convert_to_roman 
+                        |> printfn "%s"
 
     0
