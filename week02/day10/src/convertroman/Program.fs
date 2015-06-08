@@ -7,17 +7,33 @@ let main argv =
     let is_roman_number n =
       Regex.Match(n, "^[IVXLCDM]*$").Success
 
+
     let convert_from_roman roman =
-        let map_digits_to_values roman =
-            [10; 50; 1; 1]
+        let map_digits_to_values (roman:string) = // (roman:string)
+            let digit2value d =
+                if      d = 'I' then 1
+                else if d = 'V' then 5
+                else if d = 'X' then 10
+                else if d = 'L' then 50
+                else if d = 'C' then 100
+                else if d = 'D' then 500
+                else                 1000
+
+            Array.map digit2value (roman.ToCharArray())
+
         let negate_smaller_values values =
-            [-10; 50; 1; 1]
+            let nvalues = Array.copy values
+            List.iter (fun i -> nvalues.[i] <- nvalues.[i] * (if nvalues.[i] < nvalues.[i+1] then -1 else 1)) 
+                      [0..nvalues.Length-2]
+            nvalues
         
         let values = map_digits_to_values roman
         let values' = negate_smaller_values values
-        List.sum values'
+        Array.sum values'
+
 
     let convert_to_roman arabic = "XLII"
+
 
     if is_roman_number number_to_convert then
       let arabic_number = convert_from_roman number_to_convert
