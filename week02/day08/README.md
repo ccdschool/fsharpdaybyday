@@ -124,4 +124,4 @@ You find the full source in the [repo](src/convertroman).
 
 ***
 
-Two of five features implemented. Not bad for a short day of F#. But how to decide between the number systems? That's the topic for tomorrow.
+Three of six features implemented. Not bad for a short day of F#. But how to decide between the number systems? That's the topic for tomorrow.
