@@ -1,9 +1,9 @@
 # Day #8 - Arrays
-Learning a language is easier when you know why, when you have goal. That's why today's lesson starts with a kata. First the problem, then an introduction to helpful language features.
+Learning a language is easier when you know why, when you have a goal. That's why today's lesson starts with a kata. First the problem, then an introduction to helpful language features.
 
 Please have a look at the [requirements document](https://app.box.com/s/z07b8gr6e1ngvb3cg7ps78zy2ddi3vx1). The requested solution is still small, but there is enough to learn for it for a couple of days.
 
-Let's start with list of features that need to be implemented. From that we can get an idea what's missing in our F# toolbox.
+Let's start with a list of features that need to be implemented. From that we can get an idea what's missing in our F# toolbox.
 
 * A program, not just a function needs to be written. That means, at least in the end you need to use an IDE like Visual Studio or Xamarin Studio to compile the code into a standalone executable for your operating system.
 * The program needs access to the command line to read the number to convert.
@@ -97,6 +97,8 @@ Arrays are not meant to grow. So there are no special language features for that
 let numbers = Array.append [|1;2|] [|3;4;5|]
 let middlepart = Array.sub numbers 1 3
 ```
+
+_sub_ extracts an number of array elements starting at a specified index.
 
 How to choose between arrays and lists? Let your default be lists. They are more flexible. But if you need more efficiency or mutability or interoperability with the CLR/BCL, then choose arrays.
 
