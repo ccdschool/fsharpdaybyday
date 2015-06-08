@@ -119,7 +119,7 @@ But anyway... Calls to BCL or C# functions in an assembly are straightforward to
 ## Refining the solution
 With tuples today's task - to implement the function for checking the type of number passed to the conversion program - becomes quite easy. There are two solutions to choose from.
 
-```
+```fsharp
 open System
 
 let is_roman_number n =
@@ -128,7 +128,7 @@ let is_roman_number n =
 ```
 and
 
-```
+```fsharp
 open System.Text.RegularExpressions
 
 let is_roman_number n =
