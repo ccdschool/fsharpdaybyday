@@ -9,7 +9,7 @@ let main argv =
 
 
     let convert_from_roman roman =
-        let map_digits_to_values (roman:string) = // (roman:string)
+        let map_digits_to_values (roman:string) =
             let digit2value d =
                 if      d = 'I' then 1
                 else if d = 'V' then 5
@@ -18,7 +18,7 @@ let main argv =
                 else if d = 'C' then 100
                 else if d = 'D' then 500
                 else                 1000
-            roman.ToCharArray() |> Array.map digit2value // |>
+            roman.ToCharArray() |> Array.map digit2value
 
         let negate_smaller_values values =
             let nvalues = Array.copy values
@@ -31,14 +31,16 @@ let main argv =
               |> Array.sum
 
 
-    let convert_to_roman arabic = "XLII"
+    let convert_to_roman arabic =
+        "XLII"
 
 
     if is_roman_number number_to_convert then
       number_to_convert |> convert_from_roman
                         |> printfn "%d"
     else
-      number_to_convert |> convert_to_roman 
-                        |> printfn "%s"
+      let (_, arabic) = System.Int32.TryParse(number_to_convert)
+      arabic |> convert_to_roman 
+             |> printfn "%s"
 
     0
