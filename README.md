@@ -1,6 +1,7 @@
 # F# Day by Day
-This repository is dedicated to learning the language F# in tiny increments. The idea is you come back to the repo every day for a small dose of Functional Programming (FP).
+This repository is dedicated to teaching the F# languages in tiny increments. The idea is you come back to the repo every day for a small dose of Functional Programming (FP).
 
+## Why learn F#?
 What F# is, is best said by its current "owner", the F# Foundation at [fsharp.org](http://fsharp.org):
 
 > F# is a mature, open source, cross-platform, functional-first programming language. It empowers users and organizations to tackle complex computing problems with simple, maintainable and robust code.
@@ -35,11 +36,24 @@ And finally it is **much easier to adhere to clean code principles and patterns*
 
 So even if you're not interested in lofty discussions about the merits of Functional Programming, even if you don't care about the benefits of immutability for concurrent programming... even then you should give F# a try. Because it's a language to please your customers with. They might not understand nor see F# code. But they sure will love if you're quicker to adapt your code base to new requirements.
 
+## What you will learn
+There are quite some books on F# out there (see [here](http://fsharp.org/about/learning.html) for a list). Also you can find free introductions to the language on the Internet (e.g. see [here](http://www.tryfsharp.org/Learn/getting-started) or [here](http://fsharpforfunandprofit.com/posts/why-use-fsharp-intro/)). So why yet another explanation? It's because of your always scarce time.
+
+This introduction is tailored to a busy schedule. It does not expect you to find extensive time to sit down and learn the details of a new language of unknown value to you. Instead it offers you a curriculum consisting of bite sized pieces in a clear order. Easy to digest in 10-15 minutes each day. No strings attached. You don't even have to code along.
+
+The focus is on small and pragmatic rather then comprehensive. What is presented each day is a tiny increment of easy to understand stuff. It builds on one another little by little. And it's accompanied or even driven by immediate application to programming problems. That way you learn what you need and what is easy to remember because it's relevant.
+
+In the end it's just an introduction to F#. Don't expect deep dives and esoteric discussions of intracies of the Functional Programming paradigm. Don't wait for a systematic discussion of languages aspects. The approach is much more natural, more childlike learning than adult learning.
+
+F# is a fun language and so should an introduction to it be: fun and easy to follow along.
+
+Of course, to get most out of it you should start practicing F#. But in the end you'll outgrow this introduction. You'll then want to switch to advanced literature. That's perfectly fine, no, it's even the purpose of this introduction.
+
 And now, without further ado, enter into the realm of F# on [day #1](week01/day01).
 
 ***
 
-This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.de), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community with [currently 4000+ members](http://xing.com/net/ccd) in 2009 and have been teaching principles and practices for clean coding and fluent software production since then to many hundred developers.
+This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.com), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community with [currently 4000+ members](http://xing.com/net/ccd) in 2009 and have been teaching principles and practices for clean coding and fluent software production since then to many hundred developers.
 
 ![](images/ccd-school_logo.jpeg)
 

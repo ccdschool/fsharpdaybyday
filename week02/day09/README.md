@@ -4,7 +4,7 @@ Today we'll focus on just one feature of the ["Convert roman" kata](https://app.
 The function to accomplish this is
 
 ```
-let is_roman_number n = ...
+let is_roman_number n = // ...
 ```
 
 with a type of _string -> bool_.
