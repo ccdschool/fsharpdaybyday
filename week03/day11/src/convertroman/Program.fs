@@ -3,15 +3,15 @@
 type ArabicNumber = int
 type RomanNumber = string
 
-type Syllable = { Symbol:string; Value:int }
+type Symbol = { Text:string; Value:int }
 
-let syllables = [{Symbol="M"; Value=1000}; {Symbol="CM"; Value=900};
-                 {Symbol="D"; Value=500}; {Symbol="CD"; Value=400};
-                 {Symbol="C"; Value=100}; {Symbol="XC"; Value=90};
-                 {Symbol="L"; Value=50}; {Symbol="XL"; Value=40};
-                 {Symbol="X"; Value=10}; {Symbol="IX"; Value=9};
-                 {Symbol="V"; Value=5}; {Symbol="IV"; Value=4};
-                 {Symbol="I"; Value=1}]
+let symbols = [{Text="M"; Value=1000}; {Text="CM"; Value=900};
+               {Text="D"; Value=500}; {Text="CD"; Value=400};
+               {Text="C"; Value=100}; {Text="XC"; Value=90};
+               {Text="L"; Value=50}; {Text="XL"; Value=40};
+               {Text="X"; Value=10}; {Text="IX"; Value=9};
+               {Text="V"; Value=5}; {Text="IV"; Value=4};
+               {Text="I"; Value=1}]
 
 
 [<EntryPoint>]
@@ -19,20 +19,19 @@ let main argv =
     let number_to_convert = argv.[0]
 
     let is_roman_number n =
-        let singleCharSyllableSymbols = syllables |> List.filter (fun g -> g.Symbol.Length = 1) 
-                                                  |> List.map (fun g -> g.Symbol)
-                                                  |> List.toArray
-        let pattern = sprintf "^[%s]*$" (System.String.Join ("", singleCharSyllableSymbols))
+        let singleCharSymbols = symbols |> List.filter (fun s -> s.Text.Length = 1) 
+                                        |> List.map (fun s -> s.Text)
+                                        |> List.toArray
+        let pattern = sprintf "^[%s]*$" (System.String.Join ("", singleCharSymbols))
         Regex.Match(n, pattern).Success
 
 
-    let convert_from_roman roman =
-        let map_digits_to_values (roman:RomanNumber) : ArabicNumber array =
-            let digit2value (d:char) =
-                let d' = d.ToString()
-                let glyph = List.find (fun g -> g.Symbol = d') syllables
-                glyph.Value
-            roman.ToCharArray() |> Array.map digit2value 
+    let convert_from_roman (roman:RomanNumber) : ArabicNumber =
+        let map_digits_to_values (roman:RomanNumber) =
+            let valueOf (digit:char) =
+                let symbol = symbols |> List.find (fun s -> s.Text = digit.ToString())
+                symbol.Value
+            roman.ToCharArray() |> Array.map valueOf
 
         let negate_smaller_values values =
             let nvalues = Array.copy values
@@ -47,19 +46,19 @@ let main argv =
 
     let convert_to_roman (arabic:ArabicNumber) : RomanNumber =
         let symbolize arabic =
-            let rec symbolize' arabic (syllables: Syllable list) factors =
+            let rec symbolize' arabic (symbols: Symbol list) factors =
                 if arabic = 0 then
                     factors
                 else
-                    let s = syllables.Head
+                    let s = symbols.Head
                     if arabic > s.Value then
-                        symbolize' (arabic - s.Value) syllables (factors @ [s.Symbol])
+                        symbolize' (arabic - s.Value) symbols (factors @ [s.Text])
                     else if arabic = s.Value then
-                        symbolize' (arabic - s.Value) syllables.Tail (factors @ [s.Symbol])
+                        symbolize' (arabic - s.Value) symbols.Tail (factors @ [s.Text])
                     else
-                        symbolize' arabic syllables.Tail factors
+                        symbolize' arabic symbols.Tail factors
                   
-            symbolize' arabic syllables []
+            symbolize' arabic symbols []
 
         let join (symbol:string list) =
             System.String.Join ("", List.toArray symbol)
