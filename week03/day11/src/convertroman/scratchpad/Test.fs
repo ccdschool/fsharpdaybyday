@@ -5,10 +5,11 @@ open NUnit.Framework
 
 [<TestFixture>]
 type ToRomanConversion() =  
-    let factorize arabic =
-        let values = [1000; 900; 500; 400; 100; 90; 
-                      50; 40; 10; 9; 5; 4; 1]
+    let symbols =  dict [(1000, "M"); (900, "CM"); (500, "D"); (400, "CD"); 
+                         (100, "C"); (90, "XC"); (50, "L"); (40, "XL"); 
+                         (10, "X"); (9, "IX"); (5, "V"); (4, "IV"); (1, "I")]
 
+    let factorize arabic =
         let rec factorize' arabic (values:int list) factors =
             if arabic = 0 then
                 factors
@@ -21,13 +22,12 @@ type ToRomanConversion() =
                 else
                     factorize' arabic values.Tail factors
 
+        let values = symbols.Keys |> Seq.toList
+
         factorize' arabic values []
 
     let symbolize factors =
-        let syllables =  dict [(1000, "M"); (900, "CM"); (500, "D"); (400, "CD"); (100, "C"); (90, "XC");
-                               (50, "L"); (40, "XL"); (10, "X"); (9, "IX"); (5, "V"); (4, "IV"); (1, "I")]
-
-        factors |> List.map (fun k -> syllables.Item(k))
+        factors |> List.map (fun k -> symbols.Item(k))
 
     let convert_to_roman arabic =
         let symbols = arabic |> factorize |> symbolize |> List.toArray

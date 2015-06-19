@@ -49,11 +49,30 @@ Translating the values then into the roman symbols is easy, too. F# provides a r
 
 ```
 let symbolize factors =
-    let syllables =  dict [(1000, "M"); (900, "CM"); (500, "D"); (400, "CD");
+    let symbols =  dict [(1000, "M"); (900, "CM"); (500, "D"); (400, "CD");
     					   (100, "C"); (90, "XC"); (50, "L"); (40, "XL"); 
     					   (10, "X"); (9, "IX"); (5, "V"); (4, "IV"); (1, "I")]
 
-    factors |> List.map (fun k -> syllables.Item(
+    factors |> List.map (fun k -> symbols.Item(k))
+```
+
+Which leads to the full solution of the arabic to roman conversion:
+
+```
+let convert_to_roman arabic =
+    let symbols = arabic |> factorize |> symbolize |> List.toArray
+    System.String.Join("", symbols)
+```
+
+Problem solved. Case closed.
+
+Or maybe not. Because the solution does not really feel DRY. There are two occurrences of the values; they are used during factorization as well as during symbolization.
+
+This can be improved by extracting the _symbols_ dictionary from _symbolize_ and share it with _factorize_. Factorization can then get the values needed from the dictionary:
+
+```
+let values = symbols.Keys |> Seq.toList
+factorize' arabic values []
 ```
 
 
