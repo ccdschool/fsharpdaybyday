@@ -150,7 +150,7 @@ Which one to choose?
 
 Using the regular expression is slightly smaller, and does not need a negation, which makes it easier to understand. Also using regular expressions is always a demonstration of proficiency, isn't it? ;-)
 
-See [here](src/convertroman) for the current source files of the project.
+See [here](src/convertroman/Program.fs) for the current source files of the project.
 
 ***
 

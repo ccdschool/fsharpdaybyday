@@ -278,17 +278,8 @@ if arabic = s.Value then
 ...
 ```
 
+As usual you can find the complete source code in the [repo](src/convertroman/Program.fs).
 
+***
 
-
-
-
-
-
-
-
-
-
-day 12: module und namespaces - code aufteilen
-
-day 13: match - für entscheidungen wie bei digit2value oder is_roman_number (mit option type)
+Being able to easily define your own types is one of the great strengths of F#. It helps to manifest your domain language in code. More on that later...
