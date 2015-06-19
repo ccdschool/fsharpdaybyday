@@ -1,7 +1,7 @@
 # Day #11 - Type aliases and record types
 Today's the day to implement the final feature of the "Convert roman" kata: converting arabic numbers to roman numbers.
 
-```
+```fsharp
 let convert_to_roman arabic = // ...
 ```
 
@@ -25,7 +25,7 @@ The solution steps now seem to be clear:
 ## Implementation
 Implementing the steps is straightforward with what you already know. The factorization can be done recursively. See how the result is accumulated stepwise in the last parameter - and the first parameter is a stepwise "shrinking problem":
 
-```
+```fsharp
 let factorize arabic =
     let values = [1000; 900; 500; 400; 100; 90; 
     				 50; 40; 10; 9; 5; 4; 1]
@@ -47,7 +47,7 @@ let factorize arabic =
 
 Translating the values then into the roman symbols is easy, too. F# provides a read-only dictionary type to be filled with tuples as key-value-pairs:
 
-```
+```fsharp
 let symbolize factors =
     let symbols =  dict [(1000, "M"); (900, "CM"); (500, "D"); (400, "CD");
     					   (100, "C"); (90, "XC"); (50, "L"); (40, "XL"); 
@@ -58,7 +58,7 @@ let symbolize factors =
 
 Which leads to the full solution of the arabic to roman conversion:
 
-```
+```fsharp
 let convert_to_roman arabic =
     let symbols = arabic |> factorize |> symbolize |> List.toArray
     System.String.Join("", symbols)
@@ -70,7 +70,7 @@ Or maybe not. Because the solution does not really feel DRY. There are two occur
 
 This can be improved by extracting the _symbols_ dictionary from _symbolize_ and share it with _factorize_. Factorization can then get the values needed from the dictionary:
 
-```
+```fsharp
 let values = symbols.Keys |> Seq.toList
 factorize' arabic values []
 ```
@@ -85,7 +85,7 @@ Using a dictionary does not seem the best fit to support both conversions equall
 
 A list of tuples instead of a dictionary would do - but makes it hard to access the tuple parts. Remember: tuples need to be decomposed to get at their members:
 
-```
+```fsharp
 let person = ("Peter", 42)
 let (name, age) = person
 ```
@@ -95,7 +95,7 @@ Tuples are ad hoc data types. No declaration needed, just throw together a coupl
 
 But what about "real" types? Of course F# lets you define your own  types. Here is the simplest way to do this:
 
-```
+```fsharp
 type Distance = float
 type Factor = int
 type Name = string
@@ -105,7 +105,7 @@ type Names = Name list
 
 These types are called _aliases_. They just give alternative names to other types. See them as shortcuts. And as a way to add meaning. Compare these function definitions:
 
-```
+```fsharp
 let print friends =
     ...
     
@@ -118,7 +118,7 @@ let print'' (friends: Names) =
 
 They are progressively more specific and more meaningful. To explicitly make _friends_ to be of type _Names_ compared to _string list_ makes the function definition more expressive. Also it makes it easier to change the type of _friends_ wherever this kind of data is used, e.g.
 
-```
+```fsharp
 let print (friends: Names) =
 	...
 let aggregate (friends: Names) =
@@ -136,7 +136,7 @@ As you've see you can give an alias not only to scalar types like _int_ or _bool
 
 If you want to constrain (or document) a function expecting a tuple you can define your own tuple type:
 
-```
+```fsharp
 type Person = string * int
 
 let print (employee: Person) =
@@ -147,7 +147,7 @@ print ("Peter", 42)
 
 This is equivalent to, but shorter and easier to change than
 
-```
+```fsharp
 let print (name:string, age:int) =
 	...
 ```
@@ -157,13 +157,13 @@ Tuples are structures of a fixed number of heterogeneous elements - which are an
 
 If that's too late for your purpose or too cumbersome or not meaningful enough, then you can define record types instead. They are like tuples but with named fields.
 
-```
+```fsharp
 type Person = {Name:string; Age:int}
 ```
 
 To create a record value assign values to its fields like this:
 
-```
+```fsharp
 let p = {Name="Peter"; Age=42}
 ```
 
@@ -171,19 +171,19 @@ Each field must be assigned to! That's necessary since record types like all oth
 
 When you want to access record fields do it like in many other languages, use the . operator:
 
-```
+```fsharp
 printfn "%s is %d years old" p.Name p.Age
 ```
 
 When you create a record value F# usually infers the type correctly from the field names used. But in case two record types look the same (or if you want to add more explicitness to your code) you can specify the type using a constraint, e.g.
 
-```
+```fsharp
 let p:Person = {Name="Mary"; Age=38}
 ```
 
 Records once created are immutable. But F# helps you to create new records from existing ones - and at the same time change a couple of fields, e.g.
 
-```
+```fsharp
 let q = {p with Name="Bella"}
 ```
 
@@ -194,7 +194,7 @@ With records under our belt we can rework our roman conversion approach.
 
 First let's mirror the two main domain language terms in the code: arabic number and roman number.
 
-```
+```fsharp
 type ArabicNumber = int
 type RomanNumber = string
 
@@ -210,7 +210,7 @@ Even though F# in many cases does not need type annotations it can be helpful to
 
 Secondly let's set up the core dictionary of the application mapping textual symbols to values.
 
-```
+```fsharp
 type Symbol = { Text:string; Value:int }
 
 let symbols = [{Text="M"; Value=1000}; {Text="CM"; Value=900};
@@ -226,7 +226,7 @@ Even though this is conceptually a dictionary or mapping it's not so formally. R
 
 From this dictionary the list of valid characters in a roman number can be derived for number category checking:
 
-```
+```fsharp
 let is_roman_number n =
     let singleCharSymbols = symbols |> List.filter (fun s -> s.Text.Length = 1) 
                                     |> List.map (fun s -> s.Text)
@@ -239,7 +239,7 @@ Only the single character symbols like I or X or D are compiled into the Regex p
 
 Then translating a roman digit to its value uses the list of symbols:
 
-```
+```fsharp
 let map_digits_to_values (roman:RomanNumber) =
     let valueOf (digit:char) =
         let symbol = symbols |> List.find (fun s -> s.Text = digit.ToString())
@@ -253,7 +253,7 @@ This is a bit more elaborate since no real dictionary is used - but then it's ea
 
 And finally translating an arabic number into roman symbols reverses the access pattern:
 
-```
+```fsharp
 let symbolize arabic =
     let rec symbolize' arabic (symbols: Symbol list) factors =
         if arabic = 0 then
@@ -272,7 +272,7 @@ let symbolize arabic =
 
 Finding the factors and mapping the factors to their symbol texts have been merged into a single function. When the factor has been found, its string representation is at hand, too. So why not use it right away? See for example:
 
-```
+```fsharp
 if arabic = s.Value then
     symbolize' (arabic - s.Value) symbols.Tail (factors @ [s.Text])
 ...
