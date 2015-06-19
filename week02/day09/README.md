@@ -46,18 +46,29 @@ let p = ("Peter", 34)
 let b = ("Beginning F#", "Robert Pickering", 452, 23.21)
 ```
 
-Tuples are structured values with a fixed number of unnamed heterogeneous elements, i.e. of different type. Lists and arrays are structured values, too. But their unnamed elements all need to be of the same type. And lists have no fixed length.
+Tuples are structured values with a fixed number of unnamed heterogeneous elements, i.e. of different type. Their type signatures look like this to signify the range of possible values.
+
+```
+string * int
+string * string * int * float
+```
+
+Read for example: all possible values of _string_ times all possible values of _int_.
+
+Lists and arrays are structured values, too. But their unnamed elements all need to be of the same type. And lists have no fixed length.
 
 For now think of tuples as some kind of poor man's records ;-) But look how cheap they are. No type definition needed, no need to use a special type like _Tuple<T0, T1, ...>_ in C#.
 
 Whereas elements in lists and arrays can be access via an index, that's not possible for tuples. Instead you need to deconstruct a tuple using a let binding to get at its fields:
 
 ```fsharp
-let (name, age) = p
+let name, age = p
 let (title, _, _, price) = b
 ```
 
 You have to provide as many identifiers on the left side of the = as the tuple on the right side has fields. But if you're not interested in a field's value use an underscore as a "don't care" identifier.
+
+Enclose the identifiers in parentheses if you like.
 
 With tuples it's easy to return more than one value from a function, e.g.
 
