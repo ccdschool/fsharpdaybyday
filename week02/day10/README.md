@@ -214,7 +214,7 @@ Note, that _List.iter_ does not refer to the digit values but to a range of inde
 
 And the function stays true to the maxime of immutability. It does not change the input array but copies it before applying negation.
 
-As usual you can find the complete source code in the [repo](src/convertroman).
+As usual you can find the complete source code in the [repo](src/convertroman/Program.fs).
 
 ***
 

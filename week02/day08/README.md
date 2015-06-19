@@ -120,7 +120,7 @@ Here's how that could look using the features of F# presented so far:
 
 ![](images/w02d08a.png)
 
-You find the full source in the [repo](src/convertroman).
+You find the full source in the [repo](src/convertroman/Program.fs).
 
 ***
 
