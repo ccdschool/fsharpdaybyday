@@ -155,3 +155,8 @@ See [here](src/convertroman/Program.fs) for the current source files of the proj
 ***
 
 Four of six features implemented! Great! And being able to tap into the power of the .NET BCL sure will turn out to be very useful in the future as well. Maybe already tomorrow...
+
+### Read more
+* Scott Wlaschin, [Tuples - Multiplying types together](http://fsharpforfunandprofit.com/posts/tuples/)
+* Wikibooks, [F Sharp Programming / Tuples and Records](https://en.wikibooks.org/wiki/F_Sharp_Programming/Tuples_and_Records)
+* Microsoft, [Tuples (F#)](https://msdn.microsoft.com/de-de/library/dd233200.aspx)

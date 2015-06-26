@@ -283,3 +283,10 @@ As usual you can find the complete source code in the [repo](src/convertroman/Pr
 ***
 
 Being able to easily define your own types is one of the great strengths of F#. It helps to manifest your domain language in code. More on that later...
+
+### Read more
+* Scott Wlaschin, [Type abbreviations - Also known as aliases](http://fsharpforfunandprofit.com/posts/type-abbreviations/)
+
+* Microsoft, [Records (F#)](https://msdn.microsoft.com/en-us/library/dd233184.aspx)
+* Scott Wlaschin, [Records - Extending tuples with labels](http://fsharpforfunandprofit.com/posts/records/)
+* Wikibooks, [F Sharp Programming / Tuples and Records](https://en.wikibooks.org/wiki/F_Sharp_Programming/Tuples_and_Records)
