@@ -219,3 +219,9 @@ As usual you can find the complete source code in the [repo](src/convertroman/Pr
 ***
 
 Only one feature to go. That's tomorrow's topic. And you'll learn more about defining your own data types in F#.
+
+### Read more
+* Microsoft, [Operator Overloading (F#)](https://msdn.microsoft.com/en-us/library/dd233204.aspx)
+* Wikibooks, [F Sharp Programming / Operator Overloading](https://en.wikibooks.org/wiki/F_Sharp_Programming/Operator_Overloading)
+
+* Scott Wlaschin, [Understanding type inference](http://fsharpforfunandprofit.com/posts/type-inference/)
