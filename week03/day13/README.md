@@ -88,7 +88,7 @@ and it would crash, if _question_ was _null_.
 
 In F# the type of _question_ is not _string_ but _string Option_ (or _Option<string>_). There is no _null_ value in F# (except for when dealing with object-orientation or interop with the .NET framework). F# strives to help you avoid suffering from a [billion dollar mistake](http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
 
-So _questions_ value either is _Some "..."_ or _None_.
+So _question_'s value either is _Some "..."_ or _None_.
 
 You can access Option type value's value through a property:
 
@@ -165,7 +165,7 @@ match tryparse_int n with
 
 This works nicely, but is not very domain specific. What does _match tryparse_int n with_ etc. mean?
 
-If another level of indirection is the default solution for software development problems in general, then adding yet another function is the default solution in Function Programming ;-) So why not wrap the obscure match into another function to asign meaning?
+If another level of indirection is the default solution for software development problems in general, then adding yet another function is the default solution in Functional Programming ;-) So why not wrap the obscure match into another function to asign meaning?
 
 ```fsharp
 let choose_action_on_type n onArabic onRoman =
