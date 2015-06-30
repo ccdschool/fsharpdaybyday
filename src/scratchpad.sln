@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2012
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "tests", "tests\tests.fsproj", "{217493B6-04C6-4B12-919B-290305A93939}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "tests", "tests\tests.fsproj", "{217493B6-04C6-4B12-919B-290305A93939}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9D449B91-C43B-4103-8AA8-D13443E7D752}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9D449B
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "callwithparam", "callwithparam\callwithparam.fsproj", "{458CD278-3454-42D8-B54E-3891A32AF779}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,12 @@ Global
 		{217493B6-04C6-4B12-919B-290305A93939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217493B6-04C6-4B12-919B-290305A93939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217493B6-04C6-4B12-919B-290305A93939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{458CD278-3454-42D8-B54E-3891A32AF779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{458CD278-3454-42D8-B54E-3891A32AF779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{458CD278-3454-42D8-B54E-3891A32AF779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{458CD278-3454-42D8-B54E-3891A32AF779}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -171,7 +171,7 @@ If there are at least two elements in the list they are combined into a tuple an
 
 (Prepending (_(x,y) :: r_) might be a bit more natural than appending (_r @ [(x,x)]_) since result r is already a list; but then the result has to be inverted at the end. On the other hand appending requires a tad less code. You choose ;-)
 
-### Expression matching
+### Conditional matching
 So far pattern matching works based on structure and exact values. But what if the cases should be distinguished where the structure is the same, but the values differ? Take for example the "FizzBuzz" kata again.
 
 Using _if-then-else_ the comparison looks like this:
@@ -188,9 +188,9 @@ let fizzbuzz i =
         i.ToString()
 ```
 
-For each case the is a special expression.
+For each case there is a special expression.
 
-This can be done with _match_ too using guarded matches with _when_:
+This can be done using _match_ too using guarded matches with _when_:
 
 ```fsharp
 let fizzbuzz i =
@@ -202,7 +202,7 @@ let fizzbuzz i =
 
 ```
 
-Do a structure match and then add a boolean expression after _when_ to work with the pattern placeholders.
+Do a structure match and then add a conditional expression after _when_ to work with the pattern placeholders.
 
 Of course this can be done in an even more readable manner:
 
@@ -219,7 +219,7 @@ let fizzbuzz i =
     | x -> x.ToString()
 ```
 
-With guarded matches _match_ truely becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use _if-then-else_ less and less. It will become more of just a ternary operator used in expressions, e.g.
+With guarded or conditional matches _match_ truely becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use _if-then-else_ less and less. It will become more of just a ternary operator used in expressions, e.g.
 
 ```fsharp
 let line' = line + (if line = "" then "" else ",") + word
