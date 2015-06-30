@@ -127,14 +127,14 @@ With the Option type you can clearly distinguish between the "data present" or "
 
 Remember the kata about converting numbers to/from roman numerals? It contained a decision about the type of number provided on the command line: is it roman or arabic? This was solved using a regular expression:
 
-```
+```fsharp
 let is_roman_number n =
 	Regex.Match(n, "^[IVXLCDM]*$").Success
 ```
 
 If you're a regex buff, then that's of course easy. Mere mortals, though, might have sought a different solution, e.g. by trying to convert the number string to an integer using _TryParse()_ of the _int_ type.
 
-```
+```fsharp
 let is_roman_number n =
     let (wasArabic, _) = System.Int32.TryParse(n)
     not wasArabic
@@ -148,7 +148,7 @@ With the Option type and a _match_ the problem can be solved in a more natural F
 
 First define a F# equivalent for the _TryParse()_ function:
 
-```
+```fsharp
 let tryparse_int t =
     match System.Int32.TryParse(t) with
     | (true, i) -> Some i
@@ -157,7 +157,7 @@ let tryparse_int t =
 
 Then use this to determine the command line parameter type and act accordingly:
 
-```
+```fsharp
 match tryparse_int n with
     | Some i -> i |> convert_to_roman |> printfn "%s"
     | None -> n |> convert_to_arabic |> printfn "%s"
@@ -167,7 +167,7 @@ This works nicely, but is not very domain specific. What does _match tryparse_in
 
 If another level of indirection is the default solution for software development problems in general, then adding yet another function is the default solution in Function Programming ;-) So why not wrap the obscure match into another function to asign meaning?
 
-```
+```fsharp
 let choose_action_on_type n onArabic onRoman =
     match tryparse_int n with
     | Some i -> onArabic i
@@ -180,7 +180,7 @@ Something has to be done if the command line parameter is a roman number, someth
 
 When calling this function thus not only the command line parameter to check has to be passed in, but also two functions . One describing what's supposed to happen for roman numbers, the other one to be called for arabic numbers.
 
-```
+```fsharp
 choose_action_on_type n
     (fun a -> a |> convert_to_roman |> printfn "%s")
     (fun r -> r |> convert_to_arabic |> printfn "%s")
