@@ -1,8 +1,8 @@
-﻿namespace callwithparam
+﻿namespace cli
 open System.Reflection
 open System.Runtime.CompilerServices
 
-[<assembly: AssemblyTitle("callwithparam")>]
+[<assembly: AssemblyTitle("cli")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]

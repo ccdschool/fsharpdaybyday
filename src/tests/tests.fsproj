@@ -42,8 +42,8 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <ItemGroup>
-    <Compile Include="fizzbuzz.fs" />
     <None Include="packages.config" />
+    <Compile Include="tests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
