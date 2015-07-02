@@ -66,7 +66,7 @@ _failwith_ raises a _System.Exception_. And if you want that to be formatted, us
 failwithf "File not found: %s" filename
 ```
 
-For more specific exceptions, use _raise_ with any exception type:
+For more specific exceptions, use _raise_ with any exception type. No _new_ required for the exception class!
 
 ```fsharp
 raise (System.ArgumentException("Value must be in range 0..99.", "length"))
@@ -183,7 +183,5 @@ Do you now finally feel prepared for real world programming with F# with excepti
 * Microsoft, [Exception Handling (F#)](https://msdn.microsoft.com/en-us/library/dd233223.aspx)
 * Scott Wlaschin, [Exceptions - Syntax for throwing and catching](http://fsharpforfunandprofit.com/posts/exceptions/)
 * Wikibooks, [F Sharp Programming / Exception Handling](https://en.wikibooks.org/wiki/F_Sharp_Programming/Exception_Handling)
-
 * Microsoft, [Unit Type (F#)](https://msdn.microsoft.com/en-us/library/dd483472.aspx)
-
 * Microsoft, [Resource Management: The use Keyword (F#)](https://msdn.microsoft.com/en-us/library/dd233240.aspx)
