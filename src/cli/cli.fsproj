@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{458CD278-3454-42D8-B54E-3891A32AF779}</ProjectGuid>
+    <ProjectGuid>{86D43A0D-7B18-42C7-BA15-7E41000B1CF9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>callwithparam</RootNamespace>
-    <AssemblyName>callwithparam</AssemblyName>
+    <RootNamespace>cli</RootNamespace>
+    <AssemblyName>cli</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -17,7 +17,6 @@
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>
     </PlatformTarget>
-    <Commandlineparameters>hello</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -28,8 +27,6 @@
     <GenerateTailCalls>true</GenerateTailCalls>
     <PlatformTarget>
     </PlatformTarget>
-    <DefineConstants>
-    </DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
