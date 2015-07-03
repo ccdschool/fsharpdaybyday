@@ -34,18 +34,14 @@
     <Reference Include="FSharp.Core" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="nunit.framework" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.fs" />
+    <Compile Include="test_Filesystem.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\loc\loc.fsproj">
-      <Project>{0E5B1278-6E0C-4673-B0BD-263E85354FC3}</Project>
-      <Name>loc</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="sampledata\" />
     <Folder Include="sampledata\sub\" />
@@ -70,5 +66,12 @@
     <None Include="sampledata\sub\subsub\source4.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\loc\loc.fsproj">
+      <Project>{0E5B1278-6E0C-4673-B0BD-263E85354FC3}</Project>
+      <Name>loc</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
