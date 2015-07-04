@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Contracts.fs" />
     <Compile Include="Cli.fs" />
     <Compile Include="Console.fs" />
     <Compile Include="Filesystem.fs" />

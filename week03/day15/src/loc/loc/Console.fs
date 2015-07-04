@@ -1,4 +1,4 @@
 ﻿module Console
 
-let report_result (results:Contracts.CountingResult) =
-    printfn "%d source files found with %d lines of code" results.NumberOfFiles results.TotalLinesOfCode
+let report_result (numberOfFiles, totalLinesOfCode) =
+    printfn "%d source files found with %d lines of code" numberOfFiles totalLinesOfCode

@@ -1,8 +1,7 @@
 ﻿[<EntryPoint>]
 let main argv = 
-    let build_results (n, lines) : Contracts.CountingResult =
-        {NumberOfFiles=n; 
-         TotalLinesOfCode=LOC.count lines}
+    let build_results (n, lines) =
+        (n, LOC.count lines)
 
     argv |> Cli.get_locations 
          |> Filesystem.find_source_files 
