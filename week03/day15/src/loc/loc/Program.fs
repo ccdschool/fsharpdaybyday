@@ -1,5 +1,5 @@
 ﻿// What's new?
-//  - System.Environment.Exit()
+//  - multiple expressions in same line with ";"
 //  - modules
 //  - code spread across files
 //  - list comprehension with yield
@@ -7,13 +7,17 @@
 
 [<EntryPoint>]
 let main argv = 
-    let build_results (n, lines) =
+    let build_result (n, lines) =
         (n, LOC.count lines)
 
-    argv |> Cli.get_locations 
-         |> Filesystem.find_source_files 
-         |> Filesystem.compile_source_lines
-         |> build_results
-         |> Console.report_result
+    try
+        argv |> Cli.get_locations 
+             |> Filesystem.find_source_files 
+             |> Filesystem.compile_source_lines
+             |> build_result
+             |> Console.report_result
 
-    0
+        0
+    with
+    | Cli.WrongUsage -> Console.report_error "Usage: loc fileOrFolder {fileOrFolder}"; 1
+    | x -> Console.report_exception x; 99
