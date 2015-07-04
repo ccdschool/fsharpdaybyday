@@ -28,6 +28,8 @@
     <GenerateTailCalls>true</GenerateTailCalls>
     <PlatformTarget>
     </PlatformTarget>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -41,6 +43,7 @@
   <ItemGroup>
     <Compile Include="test_Filesystem_find_source_files.fs" />
     <Compile Include="test_Filesystem_compile_source_lines.fs" />
+    <Compile Include="test_LOC_count.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
