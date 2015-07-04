@@ -24,6 +24,11 @@ let ``skip non-existing files``() =
     Assert.AreEqual(["sampledata/source2.cs"], result)
 
 [<Test>]
-let ``files in subdirs``() =
+let ``files in subdir``() =
     let result = Filesystem.find_source_files ["sampledata/sub/subsub"]
     Assert.AreEqual(["sampledata/sub/subsub/source4.cs"], result)
+
+[<Test>]
+let ``files in nested subdirs``() =
+    let result = Filesystem.find_source_files ["sampledata/sub"]
+    Assert.AreEqual(["sampledata/sub/source3.cs"; "sampledata/sub/subsub/source4.cs"], result)
