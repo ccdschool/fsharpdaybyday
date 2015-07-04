@@ -16,7 +16,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
-    <Commandlineparameters>../../loc_tests/sampledata</Commandlineparameters>
+    <Commandlineparameters>../../../loc_tests/sampledata</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugSymbols>false</DebugSymbols>
@@ -38,7 +38,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Contracts.fs" />
+    <Compile Include="Cli.fs" />
+    <Compile Include="Console.fs" />
     <Compile Include="Filesystem.fs" />
+    <Compile Include="LOC.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />

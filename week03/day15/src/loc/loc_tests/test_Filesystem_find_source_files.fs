@@ -1,4 +1,4 @@
-﻿module test_Filesystem
+﻿module test_Filesystem_find_source_files
 
 open System
 open NUnit.Framework
