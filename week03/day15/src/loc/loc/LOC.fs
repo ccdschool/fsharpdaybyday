@@ -25,3 +25,9 @@ let count (lines:string list) =
     lines |> List.filter whitespace
           |> filter_multi_line_comments
           |> List.filter single_line_comments |> List.length
+
+(* Limitations of solution:
+    - does not account for a single line comment containing a multi line comment
+    - does not account for a multi line comment opening in the same line as a previous one closes
+    - does not detect nested multi line comments
+*)

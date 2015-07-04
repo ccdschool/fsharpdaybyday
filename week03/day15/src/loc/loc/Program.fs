@@ -1,4 +1,11 @@
-﻿[<EntryPoint>]
+﻿// What's new?
+//  - System.Environment.Exit()
+//  - modules
+//  - code spread across files
+//  - list comprehension with yield
+//  - ref variables
+
+[<EntryPoint>]
 let main argv = 
     let build_results (n, lines) =
         (n, LOC.count lines)
