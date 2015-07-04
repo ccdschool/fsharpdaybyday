@@ -10,10 +10,25 @@ let ``no comments``() =
 
 [<Test>]
 let ``single line comment w/o leading whitespace``() =
-    let result = LOC.count ["1"; "//-"; "3"]
+    let result = LOC.count ["1"; "//-"; "2"]
     Assert.AreEqual(2, result)
 
 [<Test>]
 let ``single line comment with leading whitespace``() =
-    let result = LOC.count ["1"; " //-"; "\t//-"; "4"]
+    let result = LOC.count ["1"; " //-"; "\t//-"; "2"]
+    Assert.AreEqual(2, result)
+
+[<Test>]
+let ``multi line comment with leading and trailing whitespae``() =
+    let result = LOC.count ["1"; " /*-"; "-"; "-*/ "; "2"]
+    Assert.AreEqual(2, result)
+
+[<Test>]
+let ``multi line comment in single line``() =
+    let result = LOC.count ["1"; " /*-*/ "; "2"]
+    Assert.AreEqual(2, result)
+
+[<Test>]
+let ``multi line comment with leading and trailing source``() =
+    let result = LOC.count ["1"; "2 /*+"; "-"; "+*/ 3"; "4"]
     Assert.AreEqual(2, result)
