@@ -31,4 +31,4 @@ let ``multi line comment in single line``() =
 [<Test>]
 let ``multi line comment with leading and trailing source``() =
     let result = LOC.count ["1"; "2 /*+"; "-"; "+*/ 3"; "4"]
-    Assert.AreEqual(2, result)
+    Assert.AreEqual(4, result)

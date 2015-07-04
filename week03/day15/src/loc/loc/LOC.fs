@@ -8,10 +8,11 @@ let count (lines:string list) =
                 let l' = l.Trim()
 
                 if !inComment then
-                    inComment := not (l'.EndsWith("*/"))
+                    inComment := l'.IndexOf("*/") < 0
+                    if not !inComment && not (l'.EndsWith("*/")) then yield l
                 else
-                    inComment := l'.StartsWith("/*")
-                    if not !inComment then yield l
+                    inComment := l'.IndexOf("/*") >= 0
+                    if not (l'.StartsWith("/*")) then yield l
                     inComment := !inComment && not (l'.EndsWith("*/")) // account for multi line comment in one line
         ]
 
