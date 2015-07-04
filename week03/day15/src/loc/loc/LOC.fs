@@ -1,6 +1,9 @@
 ﻿module LOC
 
 let count (lines:string list) =
+    let whitespace (line:string) =
+        line.Trim() <> ""
+
     let filter_multi_line_comments (lines:string list) =
         [
             let inComment = ref false
@@ -19,5 +22,6 @@ let count (lines:string list) =
     let single_line_comments (line:string) =
         not (line.Trim().StartsWith("//"))
 
-    lines |> filter_multi_line_comments
+    lines |> List.filter whitespace
+          |> filter_multi_line_comments
           |> List.filter single_line_comments |> List.length

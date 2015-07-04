@@ -32,3 +32,8 @@ let ``multi line comment in single line``() =
 let ``multi line comment with leading and trailing source``() =
     let result = LOC.count ["1"; "2 /*+"; "-"; "+*/ 3"; "4"]
     Assert.AreEqual(4, result)
+
+[<Test>]
+let ``whitespace lines``() =
+    let result = LOC.count ["1"; ""; " \t"; "2"]
+    Assert.AreEqual(2, result)
