@@ -4,29 +4,32 @@
 //  - code spread across files
 //  - list comprehension with yield
 //  - ref variables
-//  - autom. tests
+//  - unit tests
 //  - function composition
 
 // Applied:
 //  - exceptions
 //  - Option type
+//  - data flow
+//  - data model
 
 [<EntryPoint>]
 let main argv = 
-    let get_locations =
+    let get_locations : Option<Datamodel.Locations> =
         argv |> Cli.get_locations
 
-    let gather_source_lines =
+    let acquire_source_lines =
         Filesystem.find_source_files >> Filesystem.compile_source_lines
 
-    let count_lines (n, lines) =
-        (n, LOC.count lines)
+    let analyze_source_lines (n, lines) : Datamodel.Result =
+        {Datamodel.numberOfFiles=n; 
+         Datamodel.totalLinesOfCode=LOC.count lines}
 
     try
         match get_locations with
                 | Some locations ->
-                          locations |> gather_source_lines
-                                    |> count_lines
+                          locations |> acquire_source_lines
+                                    |> analyze_source_lines
                                     |> Console.report_result
                           0
                 | None -> Console.report_error "Usage: loc fileOrFolder {fileOrFolder}"

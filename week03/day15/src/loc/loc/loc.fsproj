@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Datamodel.fs" />
     <Compile Include="Cli.fs" />
     <Compile Include="Console.fs" />
     <Compile Include="Filesystem.fs" />

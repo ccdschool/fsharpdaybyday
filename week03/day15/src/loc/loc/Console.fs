@@ -1,7 +1,7 @@
 ﻿module Console
 
-let report_result (numberOfFiles, totalLinesOfCode) =
-    printfn "%d source files found with %d lines of code" numberOfFiles totalLinesOfCode
+let report_result (result:Datamodel.Result) =
+    printfn "%d source files found with %d lines of code" result.numberOfFiles result.totalLinesOfCode
 
 let report_error errormsg =
     System.Console.ForegroundColor <- System.ConsoleColor.Red
