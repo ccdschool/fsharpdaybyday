@@ -3,6 +3,8 @@
 open System
 open NUnit.Framework
 
+open Adapters
+
 [<Test>]
 let ``one filename``() =
     let result = Filesystem.find_source_files ["sampledata/source1.cs"]

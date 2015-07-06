@@ -17,4 +17,6 @@ open System.Runtime.CompilerServices
 //[<assembly: AssemblyDelaySign(false)>]
 //[<assembly: AssemblyKeyFile("")>]
 
+[<assembly: InternalsVisibleTo("loc_tests")>]
+
 ()

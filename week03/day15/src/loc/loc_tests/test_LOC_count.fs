@@ -3,6 +3,8 @@
 open System
 open NUnit.Framework
 
+open Domain
+
 [<Test>]
 let ``no comments``() =
     let result = LOC.count ["1"; "2"; "3"]

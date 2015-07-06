@@ -3,6 +3,8 @@
 open System
 open NUnit.Framework
 
+open Adapters
+
 [<Test>]
 let ``one file``() =
     let n, lines = Filesystem.compile_source_lines ["sampledata/source1.cs"]
