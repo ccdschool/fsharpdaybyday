@@ -13,12 +13,9 @@ exception InvalidPerson' of Person
 
 let xyz x = try x + x finally printfn "hello"
 let abc x = x + x
-
-[<TestFixture>]
-type Tests() = 
    
-    [<Test>]
-    member x.Test() =
+[<Test>]
+let Test() =
         try
             raise (System.ArgumentException("Wrong!", "name"))
         with
