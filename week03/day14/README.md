@@ -180,8 +180,16 @@ let write (text:string) =
 Do you now finally feel prepared for real world programming with F# with exceptions under your belt? ;-) Great. So let's tackle another application kata tomorrow...
 
 ### Read more
+Exceptions
+
 * Microsoft, [Exception Handling (F#)](https://msdn.microsoft.com/en-us/library/dd233223.aspx)
 * Scott Wlaschin, [Exceptions - Syntax for throwing and catching](http://fsharpforfunandprofit.com/posts/exceptions/)
 * Wikibooks, [F Sharp Programming / Exception Handling](https://en.wikibooks.org/wiki/F_Sharp_Programming/Exception_Handling)
+
+Returnung "nothing" from functions
+
 * Microsoft, [Unit Type (F#)](https://msdn.microsoft.com/en-us/library/dd483472.aspx)
+
+Releasing resources
+
 * Microsoft, [Resource Management: The use Keyword (F#)](https://msdn.microsoft.com/en-us/library/dd233240.aspx)
