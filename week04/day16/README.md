@@ -71,7 +71,7 @@ Here's how it can be done for this kata:
 
 1. Set up a library test project in the VS.NET/Xamarin Studio solution.
 2. Add NUnit via Nuget to the test project.
-3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the _sampledata_ folder in the project in Figure 3. Or go [here](../../day15/src/loc/loc_tests) for the sources.
+3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the _sampledata_ folder in the project in Figure 3. Or go [here](../../week03/day15/src/loc/loc_tests) for the sources.
 4. Set up your first test like this:
 
 ```fsharp
