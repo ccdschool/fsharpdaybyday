@@ -8,7 +8,7 @@ What F# is, is best said by its current "owner", the F# Foundation at [fsharp.or
 
 Whereas "functional-first" means, F# is not purely functional, but also imperative and object-oriented. It's a hybrid or multi-paradigm language. It favors pragmatism over fundamentalism - and strives to make the transition for mono-paradigm language developers into the FP-world easier.
 
-If this does not provide enough motivation for you to learn F#, get some inspiration from the "[Why use F#?](http://fsharpforfunandprofit.com/series/why-use-fsharp.html)" series of articles by Scott Wlaschin.
+If this does not provide enough motivation for you to learn F#, get some inspiration from "[Why am I so enthusiastic about F#](http://fpbridge.co.uk/why-fsharp.html)" by Scott Wlaschin or his article series "[Why use F#?](http://fsharpforfunandprofit.com/series/why-use-fsharp.html)".
 
 F# currently is available for the .NET/Mono platform, which means it can not only be used on Windows, but also on Linux and Mac OS. It was originally developed by Microsoft's [Don Syme](http://en.wikipedia.org/wiki/Don_Syme), but since then has been made open source.
 
