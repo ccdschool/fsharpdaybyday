@@ -71,7 +71,7 @@ Here's how it can be done for this kata:
 
 1. Set up a library test project in the VS.NET/Xamarin Studio solution.
 2. Add NUnit via Nuget to the test project.
-3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the _sampledata_ folder in the project in Figure 3.
+3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the _sampledata_ folder in the project in Figure 3. Or go [here](../../day15/src/loc/loc_tests) for the sources.
 4. Set up your first test like this:
 
 ```fsharp
@@ -91,7 +91,7 @@ Putting the tests in a module and opening namespaces is straightforward. What's 
 
 That's it. No test class with _[<TestFixture>]_ needed like in C#. Just test functions.
 
-You can use the familiar NUnit _Assert_ methods to check your expectations. Or you might want to add some more F# like unit testing power, e.g. FSUnit. But to get you started NUnit should be enough. Stay close to home for now :-)
+You can use the familiar NUnit _Assert_ methods to check your expectations. Or you might want to add some more F# like unit testing power, e.g. from FSUnit. But to get you started NUnit should be enough. Stay close to home for now :-)
 
 Note how F# lets you give test cases easy to read names: enclose them in two backticks and you can include whitespaces.
 
@@ -136,11 +136,11 @@ But what should be delivered is just a flat list of source lines across all file
 ]
 ```
 
-This feat is accomplished by _List.concat_. It takes a list of list and appends all elements of all lists into a new list.
+This feat is accomplished by _List.concat_. It takes a list of lists and appends all elements of all lists into a new list.
 
 ***
 
-Although developing logic test-first is of less importance with F# and its REPL environment and small functions and strict typing it's a good thing to have a regression test suite for your code. As you saw that's as easily done with F# as it is with C#. Or even easier.
+Although developing logic test-first is of less importance with F# and its REPL environment and small functions and strict typing it's a good thing to have a regression test suite for your code. As you see that's as easily done with F# as it is with C#. Or even easier.
 
 ### Read more
 Function composition
