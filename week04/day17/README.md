@@ -17,7 +17,7 @@ Filtering sure is easy: only .cs files are relevant. But how to crawl? First a l
 ## Implementation III
 The implementation of this solution approach seems to be technically straightforward. The top level of today's focus in the design can be translated like this:
 
-```
+```fsharp
 let internal find_source_files (locations:Datamodel.Locations) : string list =
 	...
 	locations |> crawl_for_files 
@@ -26,7 +26,7 @@ let internal find_source_files (locations:Datamodel.Locations) : string list =
 
 Also filtering is easily done:
 
-```
+```fsharp
 let filter_files =
     let is_relevant_file filename =
         System.IO.Path.GetExtension(filename) = ".cs"
@@ -38,7 +38,7 @@ But how to translate the location classification? Sure, that can be done with so
 
 If locations were just filenames then a _match-with_ would be easy. Classification could encode a valid filename as _Some filename_, and an invalid one as _None_.
 
-```
+```fsharp
 let classify filename =
 	...
 	
@@ -55,7 +55,7 @@ In this case, though, there are three cases to distinguish. What to do?
 ## Dynamic pattern matching
 Wouldn't it be nice to be able to do the above binary classification like this?
 
-```
+```fsharp
 locaction |> classify
              | Some filename -> ...
              | None -> ...
@@ -65,7 +65,7 @@ But that's not possible. Functions can have only have one result. That's why the
 
 Or maybe not :-) In fact F# functions can have multiple completely different exit points, not just one. However the syntax for that is a bit different. In the case of the location classification the application of such a function would look like this:
 
-```
+```fsharp
 location |> function
             | File filename -> ...
             | Folder foldername -> ...
@@ -76,7 +76,7 @@ Yes, that's one 1 function which gets called. But since it has 3 different exits
 
 Think of a function like
 
-```
+```fsharp
 let classify location =
 	...
 	return Some location
@@ -100,7 +100,7 @@ That's what F# allows you to do. How to do it you can see above: Use the multi-e
 
 But how to define such a multi-exit function? Here's how you do it for the location classification:
 
-```
+```fsharp
 let (|File|Folder|Invalid|) location =
     if System.IO.File.Exists(location) then File location
     else if System.IO.Directory.Exists(location) then Folder location 
@@ -117,7 +117,7 @@ Instead of one function name you give it three, one for each output. You separat
 
 To denote the exit through which data is supposed to flow out of the function you name it and "attach" the result, e.g.
 
-```
+```fsharp
 let (|File|Folder|Invalid|) location =
     ...
     File location
@@ -145,7 +145,7 @@ Think of a bifurcation in your processing data flow because of some validation. 
 
 ![](images/fig6.jpeg)
 
-```
+```fsharp
 data |> function
         | Valid input -> ...
         | _ -> ...
@@ -153,7 +153,7 @@ data |> function
 
 The Active Pattern for this case can look simpler:
 
-```
+```fsharp
 let (|Valid|_|) data =
     if ... then Some data
     else None
@@ -166,7 +166,7 @@ What if an Active Pattern function requires more than a single input? Maybe the 
 
 Whatever extra parameters are necessary have to go before (!) the value to categorize, e.g.
 
-```
+```fsharp
 let (|Valid|_|) pattern data =
     if ... then Some data
     else None
@@ -178,7 +178,7 @@ data |> function
 
 ***
 
-Active Patterns are a powerful tool. They make it easy to stay in the functional style of programming even when it comes to decisions. See [here](../../week03/day15/src/loc/loc/filesystem.fs) for the full solution for file system access.
+Active Patterns are a powerful tool. They make it easy to stay in the functional style of programming even when it comes to decisions. See [here](../../week03/day15/src/loc/loc/Filesystem.fs) for the full solution for file system access.
 
 ### Read more
 Active patterns
