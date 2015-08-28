@@ -1,8 +1,4 @@
-﻿// What's new?
-//  - list comprehension with yield
-//  - ref variables
-
-open Adapters
+﻿open Adapters
 open Domain
 
 [<EntryPoint>]

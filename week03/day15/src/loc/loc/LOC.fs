@@ -15,9 +15,15 @@ module LOC =
                         inComment := l'.IndexOf("*/") < 0
                         if not !inComment && not (l'.EndsWith("*/")) then yield l
                     else
-                        inComment := l'.IndexOf("/*") >= 0
-                        if not (l'.StartsWith("/*")) then yield l
-                        inComment := !inComment && not (l'.EndsWith("*/")) // account for multi line comment in one line
+                        let iOpenComment = l'.IndexOf("/*")
+                        let iCloseComment = l'.IndexOf("*/")
+
+                        inComment := iOpenComment >= 0 && iCloseComment < 0
+
+                        if iOpenComment <> 0 then 
+                            yield l
+                        else 
+                            if iCloseComment > 0 && iCloseComment < (l.Length-2) then yield l
             ]
 
         let single_line_comments (line:string) =
@@ -25,7 +31,8 @@ module LOC =
 
         lines |> List.filter whitespace
               |> filter_multi_line_comments
-              |> List.filter single_line_comments |> List.length
+              |> List.filter single_line_comments 
+              |> List.length
 
     (* Limitations of solution:
         - does not account for a single line comment containing a multi line comment

@@ -58,6 +58,9 @@
     <None Include="sampledata\source2.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="sampledata\source3.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="sampledata\nosource.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
