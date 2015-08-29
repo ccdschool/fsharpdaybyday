@@ -5,7 +5,7 @@ So what would you do to ensure, only numbers of the same kind get subtracted or 
 
 Type aliases are too week. But how about union types?
 
-```
+```fsharp
 type L = L of float
 type Inch = Inch of float
 
@@ -15,13 +15,13 @@ let b = Inch 10.0
 
 This way numeric values could be more strongly typed and made incompatible on purpose:
 
-```
+```fsharp
 let c = a + b // does not work
 ```
 
 Great! But look:
 
-```
+```fsharp
 let c = a + a // does not work
 ```
 
@@ -29,7 +29,7 @@ Event though both operands are of the same type the addition does not work. Bumm
 
 You'd have to overload `+` to make up for that and get a true typesafe addition of `L` values:
 
-```
+```fsharp
 let (+) (L x) (L y) = L (x + y)
 
 let c = a + a
@@ -57,14 +57,14 @@ The result of `2m / 10kg`, though, is `0.2m/kg` - whatever that means ;-)
 ## Defining units of measure
 With F# you finally are able to easily make such calculations typesafe where units of measures are involed. F# allows you to define your own units of measures. Just prefix a type with just a name with the attribute `[<Measure>]`:
 
-```
+```fsharp
 [<Measure>] type l
 [<Measure>] type inch
 ```
 
 Attaching a unit of measure to a `float` or `int` value then is just a matter of suffixing it:
 
-```
+```fsharp
 let a = 5<l>
 let b = 10<inch>
 ```
@@ -73,13 +73,13 @@ This also looks more natural than the above experiment with union types, doesn't
 
 As you would expect this prevents values with different units of measures to be added:
 
-```
+```fsharp
 let c = a + b // does not work
 ```
 
 But now the addition (and subtraction) of like values is possible:
 
-```
+```fsharp
 let c = a + a
 ```
 
@@ -87,7 +87,7 @@ Truely great!
 
 And what about multiplication and division? Works like a charm:
 
-```
+```fsharp
 let c = a * b
 let d = a / b
 ```
@@ -96,7 +96,7 @@ Interestingly this still results in a number with a unit of measure. The type of
 
 And now watch:
 
-```
+```fsharp
 let p = a * a
 ```
 
@@ -104,7 +104,7 @@ What's the resulting type? `int<l^2>` Isn't that cool? F# does it almost like yo
 
 This is true even for how you define and use units of measure. Use them like on paper, e.g.
 
-```
+```fsharp
 let v = 10.0<l/inch>
 let v' = 10.0<l inch>
 let v'' = 10.0<l^2>
@@ -112,7 +112,7 @@ let v'' = 10.0<l^2>
 
 And define them as combinations of each other.
 
-```
+```fsharp
 [<Measure>] type V (* Volt *)
 [<Measure>] type A (* Ampere *)
 [<Measure>] type Ω = V / A (* Ohm *)
@@ -120,7 +120,7 @@ And define them as combinations of each other.
 
 Isn't that a dream come true for cheating on physics exercises? ;-)
 
-```
+```fsharp
 let u = 10.0<V>
 let i = 5.0<A>
 let r = u / i
@@ -130,7 +130,7 @@ let u' = 3.0<Ω> * i
 
 And in case you seem to forget Ohm's law you wrap it up in a neat little function:
 
-```
+```fsharp
 let calc_current (u:float<V>) (r:float<Ω>) : float<A> = 
     u / r
     
@@ -147,7 +147,7 @@ Units of measure work fine for the basic math operations like +, -, *, /, . But 
 
 That can be done simply by casting the value to a scalar type:
 
-```
+```fsharp
 let d = 5<m>
 ...
 let d' = float d
@@ -156,7 +156,7 @@ let s = System.Math.Sin(d')
 
 or you could divide it by 1 with the same unit of measure:
 
-```
+```fsharp
 let d' = d / 1<m>
 ```
 
@@ -166,7 +166,7 @@ And now for the other way around: How to convert a number without a unit of meas
 
 Just multiply with 1 and the unit of measure:
 
-```
+```fsharp
 let rawData = 5
 ...
 let d = rawData * 1<m>
