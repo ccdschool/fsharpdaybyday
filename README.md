@@ -1,6 +1,8 @@
 # F# Day by Day
 This repository is dedicated to teaching the F# language in tiny increments. The idea is you come back to the repo every day for a small dose of Functional Programming (FP).
 
+At least we found that's the best way to learn a new language like F#. In fact this repository is testimony to this approach, because we wrote the articles and samples while we dug into the language for (almost) the first time ourselves. Whatever we learned and found interesting we logged here for you to follow in our footsteps for a couple of weeks.
+
 ## Why learn F#?
 What F# is, is best said by its current "owner", the F# Foundation at [fsharp.org](http://fsharp.org):
 
@@ -56,8 +58,3 @@ And now, without further ado, enter into the realm of F# on [day #1](week01/day0
 This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.com), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community in 2009 with [currently 4000+ members](http://xing.com/net/ccd) and have been teaching principles and practices for clean coding and fluent software production since then to many hundred developers.
 
 ![](images/ccd-school_logo.jpeg)
-
-
-
-
-
