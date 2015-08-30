@@ -41,11 +41,11 @@ So even if you're not interested in lofty discussions about the merits of Functi
 ## What you will learn
 There are quite some books on F# out there (see [here](http://fsharp.org/about/learning.html) for a list). Also you can find free introductions to the language on the Internet (e.g. see [here](http://www.tryfsharp.org/Learn/getting-started) or [here](http://fsharpforfunandprofit.com/posts/why-use-fsharp-intro/)). So why yet another explanation? It's because of your always scarce time.
 
-This introduction is tailored to a busy schedule. It does not expect you to find extensive time to sit down and learn the details of a new language of unknown value to you. Instead it offers you a curriculum consisting of bite sized pieces in a clear order. Easy to digest in 10-15 minutes each day. No strings attached. You don't even have to code along. Take it as a form of "[literate programming](https://en.wikipedia.org/?title=Literate_programming)".
+This introduction is tailored to a busy schedule. It does not expect you to find extensive time to sit down and learn the details of a new language of unknown value to you. Instead it offers you a curriculum consisting of bite sized pieces in a clear order. Easy to digest in 10-15 minutes each day. No strings attached. You don't even have to code along. Take it as a form of "[literate programming](https://en.wikipedia.org/?title=Literate_programming)" for we've included a couple of examples to apply F# features to to solve "real" problems.
 
-The focus is on small and pragmatic rather then comprehensive. What is presented each day is a tiny increment of easy to understand stuff. It builds on one another little by little. And it's accompanied or even driven by immediate application to programming problems. That way you learn what you need and what is easy to remember because it's relevant.
+The focus is on small and pragmatic rather than comprehensive. What is presented each day is a tiny increment of easy to understand stuff. It builds on one another little by little. And it's accompanied or even driven by immediate application to programming problems. That way you learn what you need and what is easy to remember because it's relevant.
 
-In the end it's just an introduction to F#. Don't expect deep dives and esoteric discussions of intracies of the Functional Programming paradigm. Don't wait for a systematic discussion of languages aspects. The approach is much more natural, more childlike learning than adult learning.
+In the end it's just an introduction to F#. Don't expect deep dives and esoteric discussions of intricacies of the Functional Programming paradigm. Don't wait for a systematic discussion of languages aspects. The approach is much more natural, more childlike learning than adult learning.
 
 F# is a fun language and so should an introduction to it be: fun and easy to follow along.
 
