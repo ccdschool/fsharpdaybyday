@@ -55,6 +55,14 @@ And now, without further ado, enter into the realm of F# on [day #1](week01/day0
 
 ***
 
+Follow this tutorial on our Twitter account [@ccd_school](https://twitter.com/ccd_school); tweets with marked with #fsharpdaybyday.
+
+***
+
+Thanks to [Carsten König](http://gettingsharper.de) for reviewing tutorial articles.
+
+***
+
 This introductory training for F# is brought to you by the [Clean Code Developer School](http://ccd-school.com), Germany. We also founded the German [Clean Code Developer](http://clean-code-developer.de) community in 2009 with [currently 4000+ members](http://xing.com/net/ccd) and have been teaching principles and practices for clean coding and fluent software production since then to many hundred developers.
 
 ![](images/ccd-school_logo.jpeg)
