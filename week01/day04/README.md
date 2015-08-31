@@ -1,5 +1,5 @@
 # Day #4 - Naming values
-Today is an important day. You'll learn to gain control over your F# code. Because you can control of which you know the name. At least that's what fairy tales and lores of magic tell us; remember [Rumpelstiltskin](http://www.eastoftheweb.com/short-stories/UBooks/Rum.shtml)?
+Today is an important day. You'll learn to gain control over your F# code. Because you can control whatever you know the name of. At least that's what fairy tales and lores of magic tell us; remember [Rumpelstiltskin](http://www.eastoftheweb.com/short-stories/UBooks/Rum.shtml)? ;-)
 
 Today we'll start naming things in F# programs. These are just values without a name:
 
@@ -52,7 +52,7 @@ let answer = 42
 let calculate_volume = fun x y z -> x * y * z
 ```
 
-you inform the reader about your intention. No need to become an "archaeologist" and ask yourself "What could 42 possibly mean?", "What is fun x y z -> x * y * z for?" Instead the reader just looks at the name and knows right away. Hopefully ;-) If it's an [intention revealing name](http://c2.com/cgi/wiki?IntentionRevealingNames).
+you inform the reader about your intention. No need to become an "archaeologist" and ask yourself "What could 42 possibly mean?", "What is fun x y z -> x * y * z for?" Instead the reader just looks at the name and knows right away. Hopefully ;-) If it's an [intention revealing name](http://c2.com/cgi/wiki?IntentionRevealingNames) that is.
 
 From this it should be obvious that a name is singular. It denotes only a single value. You cannot change what a name is referring to. A let binding is immutable.
 
@@ -70,7 +70,7 @@ let ``is this the ultimate answer?`` = fun a -> a = ``the ultimate answer!``
 printfn "%b" (``is this the ultimate answer?`` 23)
 ```
 
-So far names have been given to literal values. But of course you can give them to values resulting from transformation, too.
+So far names have been given to literal values. But of course you can give them to values resulting from transformations, too.
 
 ```fsharp
 let greeting = "Hello"
@@ -109,8 +109,27 @@ is the same as
 let add x y = x + y
 ```
 
-You don't need to put a full function literal to the right of the = of a let binding. Just write the function parameters behind the identifier and assign both to the function body.
+You don't need to put a full function literal to the right of the `=` of a let binding. Just write the function parameters behind the identifier and assign both to the function body.
 
 ***
 
 Your F# code is gaining meaning. That's good. You're on your way to useful programs. Tomorrow we're going to solve our first real problem.
+
+PS: To be precise you can re-bind names to other values, but only within functions. Re-binding does not work outside any function:
+
+```
+let a = 41
+let a = 42 // does not compile
+```
+
+But inside a function you can re-bind a name to even a value of a different type than before:
+
+```
+let doSomething x =
+    let a = 41
+    ...
+    let a = "x"
+    ...
+```
+
+This does not compromise F#'s type safety!

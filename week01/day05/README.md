@@ -8,7 +8,7 @@ let name = "Peter"
 if name = "Paul" then printfn "Hello, my friend!" else printfn "Hello, stranger!"
 ```
 
-This looks familiar, doesn't it? Even more, if I add some indentation:
+This looks familiar, doesn't it? Even more if I add some indentation:
 
 ```fsharp
 let name = "Peter"
@@ -19,11 +19,11 @@ else
   printfn "Hello, stranger!"
 ```
 
-Depending on the result of the boolean expression, the comparion, either this or that string is written to the console.
+Depending on the result of the boolean expression, the comparison, either this or that string is written to the console.
 
-But what looks like a statement in truth is still an expression. We're talking Functional Programming, so view _if_ as a function taking three parameters: a boolean value to decide on, what to do on true, and what to do on false.
+But what looks like a statement in truth is still an expression. We're talking Functional Programming, so view `if` as a function taking three parameters: a boolean value to decide on, what to do on true, and what to do on false.
 
-The result of the _if_ function then is whatever the result is of the branch that go executed. The next example will make that more clear:
+The result of the `if` function then is whatever the result is of the branch that got executed. The next example will make that more clear:
 
 ```fsharp
 let greeting name =
@@ -35,11 +35,11 @@ let greeting name =
 printfn "%s" (greeting "Peter")
 ```
 
-_greeting_ is a function with one parameter. Its definition spans several lines. So far functions were one-liners. But if you indent the expressions making up the body of a function you can spread them out over multiple lines. Just be sure to use spaces, not tabs to indent!
+`greeting` is a function with one parameter. Its definition spans several lines. So far functions were one-liners. But if you indent the expressions making up the body of a function you can spread them out over multiple lines. Just be sure to use spaces, not tabs to indent!
 
 Whatever is indented below the let binding line forms the body of it. Of course the same indentation level is required for all lines. This helps to let your code look tidy. No more quibbling about such details of code formatting. No more machting curly braces.
 
-Since _if_ returns a result, both the _then_ and the _else_ branch need to be present and deliver a value of the same type. That's why
+Since `if` returns a result, both the `then` and the `else` branch need to be present and deliver a value of the same type. That's why
 
 ```fsharp
 let div a b =
@@ -49,7 +49,7 @@ let div a b =
     "Division by zero!"
 ```
 
-does not compile. One branch returns an _int_ the other a _string_.
+does not compile. One branch returns an `int` the other a `string`.
 
 There are ways to deal with this kind of scenario. But that's for another day.
 
@@ -82,7 +82,7 @@ printfn "%b" ((fizzbuzz_number 17) = "17")
 
 A first, all too simple function definition with a couple of poor man's automated tests.
 
-Note the _sprintf_ function which prints to a string where _printf_ prints to the console. It's just a placeholder for the real logic of the solution.
+Note the `sprintf` function which prints to a string where `printf` prints to the console. It's just a placeholder for the real logic of the solution.
 
 But the real solution is not very complicated either:
 
@@ -98,7 +98,7 @@ let fizzbuzz_number n =
     sprintf "%d" n
 ```
 
-It's just a couple of nested _if_ expression.
+It's just a couple of nested `if` expression.
 
 Although this logic serves the purpose, it's arguably not clean, not DRY. Checking for a Fizz- and Buzz-number is done in two places.
 
@@ -120,7 +120,7 @@ let fizzbuzz_number n =
     sprintf "%d" n
 ```
 
-Since they are of no interest to the outside the are defined locally within the scope of _fizzbuzz_number_. A feat not possible in many other languages including C#. But a very useful language feature, because it improves encapsulation by limiting the visibility of functions.
+Since they are of no interest to the outside the are defined locally within the scope of `fizzbuzz_number`. A feat not possible in many other languages including C#. But a very useful language feature, because it improves encapsulation by limiting the visibility of functions.
 
 That's it. Problem solved. Or at least the first part of the problem.
 
