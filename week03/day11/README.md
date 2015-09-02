@@ -18,29 +18,29 @@ Fortunately there are only a few such possible combinations, which could be call
 
 The solution steps now seem to be clear:
 
-1. Factorize the arabic number, e.g. 42 becomes [40, 1, 1]
-2. Translate the factors into symbols, e.g. [40, 1, 1] becomes ["XL", "I", "I"]
+1. Split the arabic number into a list of summands, e.g. 42 becomes [40, 1, 1]
+2. Translate the summands into symbols, e.g. [40, 1, 1] becomes ["XL", "I", "I"]
 3. Finally build the roman number from the symbols (digits and syllables) , e.g. ["XL", "I", "I"] is combined into "XLII"
 
 ## Implementation
 Implementing the steps is straightforward with what you already know. The factorization can be done recursively. See how the result is accumulated stepwise in the last parameter - and the first parameter is a stepwise "shrinking problem":
+
+> Note: I removed some duplicates and the ineffective `@` here
 
 ```fsharp
 let factorize arabic =
     let values = [1000; 900; 500; 400; 100; 90; 
     				 50; 40; 10; 9; 5; 4; 1]
 
-    let rec factorize' arabic (values:int list) factors =
+    let rec factorize' arabic (values : int list) factors =
         if arabic = 0 then
-            factors
+            List.rev factors
         else 
-            let f = values.Head
-            if arabic > f then
-                factorize' (arabic - f) values (factors @ [f])
-            else if arabic = f then
-                factorize' (arabic - f) values.Tail (factors @ [f])
+            let (currentValue::values') = values
+            if arabic >= currentValue then
+                factorize' (arabic - currentValue) values (currentValue :: factors)
             else
-                factorize' arabic values.Tail factors
+                factorize' arabic values' factors
 
     factorize' arabic values []
 ```
@@ -53,7 +53,7 @@ let symbolize factors =
     					   (100, "C"); (90, "XC"); (50, "L"); (40, "XL"); 
     					   (10, "X"); (9, "IX"); (5, "V"); (4, "IV"); (1, "I")]
 
-    factors |> List.map (fun k -> symbols.Item(k))
+    factors |> List.map (fun k -> symbols.[k])
 ```
 
 Which leads to the full solution of the arabic to roman conversion:
@@ -95,6 +95,8 @@ Tuples are ad hoc data types. No declaration needed, just throw together a coupl
 
 But what about "real" types? Of course F# lets you define your own  types. Here is the simplest way to do this:
 
+> why first claim that these are "types" when you correct it below?
+
 ```fsharp
 type Distance = float
 type Factor = int
@@ -102,6 +104,8 @@ type Name = string
 type Tags = string list
 type Names = Name list
 ```
+
+> Maybe you should mention that those will vanish in C# :(
 
 These types are called _aliases_. They just give alternative names to other types. See them as shortcuts. And as a way to add meaning. Compare these function definitions:
 
@@ -131,8 +135,10 @@ If you wanted to change the data structure holding _friends_ from _string list_ 
 
 Type aliases are useful to give meaning and constrain.
 
+> *meaning* **yes** - constraints? **no** - if you want constaints you should do a *real* type like `type Name = Name of string`
+
 ## Tuple types
-As you've see you can give an alias not only to scalar types like _int_ or _bool_ but also to collection types like _string list_. The same is true for tuples.
+As you've see you can give aliases not only to scalar types like _int_ or _bool_ but also to collection types like _string list_. The same is true for tuples.
 
 If you want to constrain (or document) a function expecting a tuple you can define your own tuple type:
 
@@ -206,7 +212,7 @@ let convert_to_roman (arabic:ArabicNumber) : RomanNumber =
 
 Constraining input parameters as well as the function result makes the function signatures very specific. It's now perfectly clear what's allowed to go in - what will be produced.
 
-Even though F# in many cases does not need type annotations it can be helpful to at least constrain public or API functions.
+Even though F# in many cases does not need type annotations it can be helpful to at least annotate public or API functions - they can serve as beautiful documentation.
 
 Secondly let's set up the core dictionary of the application mapping textual symbols to values.
 
@@ -224,6 +230,8 @@ let symbols = [{Text="M"; Value=1000}; {Text="CM"; Value=900};
 
 Even though this is conceptually a dictionary or mapping it's not so formally. Rather than using a _dict_ type a _list_ of records is used. Remember the requirement of symmetric data? Neither symbol text nor symbol value should have priority.
 
+> while you are right here the dictionary was much faster - maybe you can implement a Bijection (using 2 dicts internally) somewhere in a future lesson
+
 From this dictionary the list of valid characters in a roman number can be derived for number category checking:
 
 ```fsharp
@@ -235,6 +243,19 @@ let is_roman_number n =
     Regex.Match(n, pattern).Success
 ```
 
+> this seems to complicated - yes you did use `Regex.Match` before but here a simple `List.exists` will do a better job IMO
+
+> and if you want to optimize you should do this way (you recreate `pattern` time and time again - just pull it out of the function):
+
+```fsharp
+let is_roman_number =
+    let singleCharSymbols = symbols |> List.filter (fun s -> s.Text.Length = 1) 
+                                    |> List.map (fun s -> s.Text)
+                                    |> List.toArray
+    let pattern = sprintf "^[%s]*$" (System.String.Join ("", singleCharSymbols))
+    fun n -> Regex.Match(n, pattern).Success
+```
+
 Only the single character symbols like I or X or D are compiled into the Regex pattern - which formerly was a constant.
 
 Then translating a roman digit to its value uses the list of symbols:
@@ -242,7 +263,7 @@ Then translating a roman digit to its value uses the list of symbols:
 ```fsharp
 let map_digits_to_values (roman:RomanNumber) =
     let valueOf (digit:char) =
-        let symbol = symbols |> List.find (fun s -> s.Text = digit.ToString())
+        let symbol = symbols |> List.find (fun s -> s.Text = string digit)
         symbol.Value
     roman.ToCharArray() |> Array.map valueOf
     

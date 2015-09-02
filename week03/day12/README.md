@@ -47,6 +47,8 @@ If a pattern matches the value its expression gets evaluated. Of course all expr
 
 Patterns can be constant values like _true_ and _false_. _And the list of patterns needs to be exaustive!_ That means: all possible values need to be covered by at least one pattern. For a given value of type _bool_ that's only _true_ and _false_. But what, if _match_ was to compare patterns to just _answer_?
 
+> *sadly* they need not be exhaustive (you only get a warning)
+
 ```fsharp
 match answer with
 | 42 -> printfn "Question unknown!"
@@ -63,7 +65,11 @@ match answer with // does not compile
 
 This is syntactically correct - but not semantically. The compiler will reject it, since the obvious catch all pattern would block further patterns from being checked. 
 
+> again (did you fiddle with your warning settings?) this will be accepted by the compiler (as you sayed so first too) - it should only generate a warning
+
 _So be sure to order the patterns from specific to general._
+
+> or better avoid overlap (yeah nobody does this - but if you want to argue about your programm it's a good idea ;) )
 
 But _match_ is more than the _switch_ you know from other languages. _match_ does not only work for scalar types. You can use it with collection types and structured types, too.
 
@@ -105,6 +111,8 @@ match l with
 
 ### Structure matching
 This is pretty nifty already, but _match_ can do even more. So far you've seen value patterns: a given value is compared to other values, the patterns.
+
+> this is not only for `match` ... deconstruction will work almost everywhere: `let`, in parameters (you already used it somewhere in the other lessons), ...
 
 Often, though, the pieces of a structure or collection value are not known (or are not important). Rather you're interested in it's structure. Take a list for example. How do you decompose a list? You can do it like this:
 
@@ -170,6 +178,8 @@ Of course the list is processed recursively. On each recursion the remaining lis
 If there are at least two elements in the list they are combined into a tuple and prepended to the resulting list of pairs (parameter r).
 
 (Prepending (_(x,y) :: r_) might be a bit more natural than appending (_r @ [(x,x)]_) since result r is already a list; but then the result has to be inverted at the end. On the other hand appending requires a tad less code. You choose ;-)
+
+> Also `@` has a really ugly runtime cost - in this case you have to recreate/iterate over all of `r`
 
 ### Conditional matching
 So far pattern matching works based on structure and exact values. But what if the cases should be distinguished where the structure is the same, but the values differ? Take for example the "FizzBuzz" kata again.
@@ -247,6 +257,8 @@ This kind of match-function can be used wherever a function value (lambda expres
 As you can see, even the vertical bar before the first pattern can be dropped.
 
 Unfortunately the _function_ shortcut may not be used for functions with more than one parameter like the recursive _pair'_ above.
+
+> it can if you remember that functions are curried anyway ;)
 
 ***
 
