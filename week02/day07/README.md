@@ -76,33 +76,26 @@ printfn "%d" ([1; 2; 3].Head)
 printfn "%A" ([1; 2; 3]].Tail)
 ```
 
-With these properties in hand you can create, for example, a function `map` to apply some function to all elements of a list creating a new list:
+With these properties in hand you can create, for example, a function `map` to apply some function to all elements of a list:
 
 ```fsharp
-let map f source =
-  let rec map' f source dest =
-    if source = [] then
-      dest
-    else
-      let mv = f (source.Head)
-      map' f source.Tail (dest @ [mv])
-      
-  map' f source []
+let rec map f source =
+  if List.isEmpty source
+  then []
+  else f source.Head :: map f source.Tail
 ```
 
-Map, well, maps elements of the source list to elements of a destination list. Example: Map (or transform) integers to their squares:
+`map` applies the function `f` to the head of the list `source` passed in, thus creating a new head for the resulting list. The tail of the resulting list is then created by calling itself recursively with the tail of the `source` list.
+
+Only if `map` is called with an empty list it immediately returns an empty list.
 
 ```fsharp
 map (fun x -> x * x) positive
 ```
 
-The outer function `map` is for convenience sake. You can focus on the function and on the list. The inner function `map'` is the workhorse. It recursively takes the head from the source list, applies the transformation function `f` and appends the result to the destination list.
+The list of squared values thus does not exist explicitly, but only on the stack while the recursion goes on towards the end of the original `source` list.
 
-If the source has been emptied the destination list is returned as the result.
-
-Note how the concatenation requires the new element to be appended to the destination list to be put in square brackets. The `@` operator only works on lists. So the single value has to be wrapped up in one.
-
-When calling itself, `map'` passes on the mapping function, the remaining source list elements, and the newly built destination list.
+Please note how the above implementation of `map` calls itself as the last thing in its body. That's called _tail recursion_ and is a favorable way to do recursion, because the compiler can then optimize usage of the call stack: in fact it does not grow as the recursion goes on. `map` won't ever cause a stack overflow.
 
 This is how working on lists in F# typically looks like - if you need to implement it yourself. Fortunately, though, you don't have to do that all the time. F# comes with quite an assortment of built in list functions. They are available from the `List` module like this:
 
