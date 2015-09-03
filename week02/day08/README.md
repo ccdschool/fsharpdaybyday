@@ -133,3 +133,11 @@ You find the full source in the [repo](src/convertroman/Program.fs).
 ***
 
 Three of six features implemented. Not bad for a short day of F#. But how to decide between the number systems? That's the topic for tomorrow.
+
+***
+
+PS: Just in case you want to know: You don't really need an IDE for this kind of project. You can stick to a text editor like [Sublime](http://www.sublimetext.com) and use _fsharpc_, the F# command line compiler.
+
+![](images/w02d08b.png)
+
+The compiler comes with Mono like the C# compiler.

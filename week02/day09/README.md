@@ -7,14 +7,14 @@ The function to accomplish this is
 let is_roman_number n = // ...
 ```
 
-with a type of _string -> bool_.
+with a type of `string -> bool`.
 
 But how to analyse the string? There are two ways to do that:
 
 * Try to convert the string into an integer. If it succeeds, then it's an arabic number, otherwise assume it to be a roman number.
 * Check the characters of the string to be in the set of valid roman digits (I, V, X, L, C, D, M).
 
-Both can easily be done with functions from the .NET BCL: _TryParse()_ and _Regex.Match()_.
+Both can easily be done with functions from the .NET BCL: `TryParse()` and `Regex.Match()`.
 
 ## Namespaces
 Both function are static and can readily be used from F#:
@@ -37,7 +37,14 @@ let m = Regex.Match("XLII", "^[IVXLCDM]*$")
 ## Tuples
 You might have noticed unlike F# functions the BCL functions need parentheses around their parameters. That's because, well, they are not F# functions, but prefab functions from an object-oriented .NET library.
 
-C# does not sport partial function application. And the BCL libraries have to be language agnostic. That's why from the F# point of view all BCL functions take just one parameter: a tuple.
+Or to be precise: they need parentheses if you pass in more than one parameter.
+
+```
+System.Console.WriteLine "Hello!"
+System.Console.WriteLine ("Hello, {0}", "Peter")
+```
+
+C# does not sport partial function application. And the BCL libraries have to be language agnostic. That's why from the F# point of view all BCL functions take one parameter: a tuple.
 
 A tuple is two or more comma separated values bound together by parentheses:
 
@@ -53,20 +60,20 @@ string * int
 string * string * int * float
 ```
 
-Read for example: all possible values of _string_ times all possible values of _int_.
+Read for example: all possible values of `string` times all possible values of `int`.
 
 Lists and arrays are structured values, too. But their unnamed elements all need to be of the same type. And lists have no fixed length.
 
-For now think of tuples as some kind of poor man's records ;-) But look how cheap they are. No type definition needed, no need to use a special type like _Tuple<T0, T1, ...>_ in C#.
+For now think of tuples as some kind of poor man's records ;-) But look how cheap they are. No type definition needed, no need to use a special type like `Tuple<T0, T1, ...>` in C#.
 
-Whereas elements in lists and arrays can be access via an index, that's not possible for tuples. Instead you need to deconstruct a tuple using a let binding to get at its fields:
+Whereas elements in lists and arrays can be accessed via an index, that's not possible for tuples. Instead you need to deconstruct a tuple using a let binding to get at its fields:
 
 ```fsharp
 let name, age = p
 let (title, _, _, price) = b
 ```
 
-You have to provide as many identifiers on the left side of the = as the tuple on the right side has fields. But if you're not interested in a field's value use an underscore as a "don't care" identifier.
+You have to provide as many identifiers on the left side of the `=` as the tuple on the right side has fields. But if you're not interested in a field's value use an underscore as a "don't care" identifier.
 
 Enclose the identifiers in parentheses if you like.
 
@@ -82,9 +89,9 @@ let (q, r) = intdiv 14 4
 printfn "%d, %d" q r
 ```
 
-Or take _TryParse()_ as another example. If used in C# it returns a boolean value to signify success/failure, but it also takes an _out_ parameter for the parsing result. This is [cumbersome](http://luketopia.net/2014/02/05/fsharp-and-output-parameters/), but in C# it would be worse to define its own _struct_ return type or the like.
+Or take `TryParse()` as another example. If used in C# it returns a boolean value to signify success/failure, but it also takes an `out` parameter for the parsing result. This is [cumbersome](http://luketopia.net/2014/02/05/fsharp-and-output-parameters/), but in C# it would be worse to define its own `struct` return type or the like.
 
-F# makes this easier. You can consume BCL/C# functions with _out_ parameters as if they returned a tuple:
+F# makes this easier. You can consume BCL/C# functions with `out` parameters as if they returned a tuple:
 
 ```fsharp
 open System
@@ -93,7 +100,7 @@ let (success, value) = Int32.TryParse("42")
 printfn "%b, %d" success value
 ```
 
-Also tuples are the way to go when you want to circumvent partial application. Think of a function  on a 2D point. For such a function you'd want to force its clients to always provide x and y together when calling it. That's accomplished with a tuple:
+Also tuples are the way to go when you want to circumvent partial application. Think of a function on a 2D point. For such a function you'd want to force its clients to always provide x and y together when calling it. That's accomplished with a tuple:
 
 ```fsharp
 let translate (x, y) d =
@@ -102,7 +109,7 @@ let translate (x, y) d =
 let a = translate (2, 5) 3
 ```
 
-A partial application of _translate_ is still possible - but not with regard to _x_ and _y_. Either both are provided or none of them.
+A partial application of `translate` is still possible - but not with regard to `x` and `y`. Either both are provided or none of them.
 
 Back to BCL functions. They require you to pass all parameters at once using a tuple, e.g.
 
@@ -125,7 +132,7 @@ let m = Regex.Match p // does not compile!
 
 Bummer :-(
 
-But anyway... Calls to BCL or C# functions in an assembly are straightforward to do. Which is also true for accessing properties of objects returned from such functions. See the _Match_ object returned from the _Regex.Match()_ function: To check if a pattern match occurred just query the _Success_ property.
+But anyway... Calls to BCL or C# functions in an assembly are straightforward to do. Which is also true for accessing properties of objects returned from such functions. See the `Match` object returned from the `Regex.Match()` function: To check if a pattern match occurred just query the `Success` property.
 
 ## Refining the solution
 With tuples today's task - to implement the function for checking the type of number passed to the conversion program - becomes quite easy. There are two solutions to choose from.
@@ -148,7 +155,7 @@ let is_roman_number n =
 
 Which one to choose?
 
-Using the regular expression is slightly smaller, and does not need a negation, which makes it easier to understand. Also using regular expressions is always a demonstration of proficiency, isn't it? ;-)
+Using the regular expression is slightly smaller and does not need a negation, which makes it easier to understand. Also using regular expressions is always a demonstration of proficiency, isn't it? ;-)
 
 See [here](src/convertroman/Program.fs) for the current source files of the project.
 
