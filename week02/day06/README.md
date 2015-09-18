@@ -12,7 +12,7 @@ for(var i=1; i<=100; i++) {
 
 This can be done in F#, too. But there is a more natural way, a more function oriented way of doing it. Maybe you remember from some computer science class that any loop can be converted into a recursion - and any recursion can be converted into a loop.
 
-That's what we want to apply today: We have a looping problem, so let's solve it with recurion.
+That's what we want to apply today: We have a looping problem, so let's solve it with recursion.
 
 You already know how to call a function. So you can do recursion, too. Almost at least. Here's the canonical recursion example: a factorial function. But it won't work, yet.
 
@@ -24,7 +24,7 @@ let factorial n =
     n * (factorial (n-1)) // fails to compile!
 ```
 
-The reason: You need to mark functions to be called recursively as such with _rec_ right after the _let_ keyword.
+The reason: You need to mark functions to be called recursively as such with `rec` right after the `let` keyword.
 
 ```fsharp
 let rec factorial n =
@@ -55,7 +55,7 @@ let rec iter from until =
 iter 0 5
 ```
 
-Note that abortion of the recursion again is not possible with a just simple _if_ without an _else_ at the beginning of the function. Both the _then_ and the _else_ branch are necessary.
+Note that abortion of the recursion again is not possible with just a simple `if` without an `else` at the beginning of the function. Both the `then` and the `else` branch are necessary.
 
 You see the pattern? Recursion is bounded by a condition. If the condition is met, recursion is aborted, otherwise the function calls itself. In each case, whatever should be done with the current value is done.
 
@@ -76,11 +76,11 @@ iter (printfn "%d") 0 5
 
 What should be done for each number is passed in as a function! That's true Functional Programming. Remember: functions are values. They can be used like integer or strings. So why not have formal parameters expecting a function to be passed in?
 
-Parameters _from_ and _until_ are used like numbers, so numbers are given when calling _iter_. But _f_ is used like a function, so a function is given when calling _iter_.
+Parameters `from` and `until` are used like numbers, so numbers are given when calling `iter`. But `f` is used like a function, so a function is given when calling `iter`.
 
-_(printfn "%d")_ is a partial application of _printfn_. That's why it's ok to leave out any value to print when using it as a parameter. The missing value later is passed in when _f_ (as an alias name for or value of _printfn "%d"_) is called within _iter_: _f from_. This results in _printfn "%d" from_ being evaluated.
+`(printfn "%d")` is a partial application of `printfn`. That's why it's ok to leave out any value to print when using it as a parameter. The missing value later is passed in when `f` (as a placeholder for the value of `printfn "%d"`) is called within `iter`: `f from`. This results in `printfn "%d" from` being evaluated.
 
-Please note the above general _iter_ function does not return a result, but _unit_ like _printf_ does. Hence you need to pass in a function to also return _unit_. That's the case in the "FizzBuzz" solution.
+Please note the above general `iter` function does not return a result, but `unit` like `printf` does. Hence you need to pass in a function to also return `unit`. That's the case in the "FizzBuzz" solution.
 
 How to do iterations with functions returning results of other types is the topic for another day.
 
@@ -91,7 +91,7 @@ The problem isn't iteration any more. That's solved. Rather the question is: Wha
 
 It should be converted and printed.
 
-The final _fizzbuzz_ function hides this detail, of course. It defines the action for each number as a local function and iterates over a given range using _iter_.
+The final `fizzbuzz` function hides this detail, of course. It defines the action for each number as a local function and iterates over a given range using `iter`.
 
 ```fsharp
 let fizzbuzz from until =

@@ -1,12 +1,12 @@
 # Day #12 - Pattern matching
 Today you'll learn about one of the most important features of any Functional Programming language: pattern matching.
 
-You can start out using pattern matching as a replacement for the _if-then-else_ function. Or you can view it as a sophisticated _switch_. But it's much more. It's more like a built in rules engine.
+You can start out using pattern matching as a replacement for the `if-then-else` function. Or you can view it as a sophisticated `switch`. But it's much more. It's more like a built in rules engine.
 
-Pattern matching is used in several places in F#. But the most prominent one is the _match_ expression.
+Pattern matching is used in several places in F#. But the most prominent one is the `match` expression.
 
 ### Value matching
-_if_ is some sort of very simple pattern matching.
+`if-then-else` is some sort of very simple pattern matching.
 
 ```fsharp
 if answer=42 then 
@@ -15,7 +15,7 @@ else
     printfn "You know the question"
 ```
 
-It checks whether a value matches one of the value patterns _true_ or _false_. The same can be done with _match_:
+It checks whether a value matches one of the value patterns `true` or `false`. The same can be done with `match`:
 
 ```fsharp
 match answer=42 with
@@ -23,7 +23,7 @@ match answer=42 with
 | false -> printfn "You know the question"
 ```
 
-The general form of a _match_ expression is
+The general form of a `match` expression is
 
 ```fsharp
 match someValue with
@@ -32,7 +32,7 @@ match someValue with
 ...
 ```
 
-_match_ compares a given value to a list of patterns which match the type of the value. Above the value's type is _bool_ so the patterns are of type _bool_, too.
+`match` compares a given value to a list of patterns which match the type of the value. Above the value's type is `bool` so the patterns are of type `bool`, too.
 
 Think of the vertical bar as an or-operator. This becomes even more obvious when you see that patterns can be written one after another, if they should be handled by the same expression:
 
@@ -43,9 +43,9 @@ match someValue with
 ...
 ```
 
-If a pattern matches the value its expression gets evaluated. Of course all expressions must return the same type of data.
+If a pattern matches a value its expression gets evaluated. Of course all expressions must return the same type of data.
 
-Patterns can be constant values like _true_ and _false_. _And the list of patterns needs to be exaustive!_ That means: all possible values need to be covered by at least one pattern. For a given value of type _bool_ that's only _true_ and _false_. But what, if _match_ was to compare patterns to just _answer_?
+Patterns can be constant values like `true` and `false`. _And the list of patterns needs to be exaustive!_ That means: all possible values need to be covered by at least one pattern. For a given value of type `bool` that's only `true` and `false`. But what, if `match` was to compare patterns to just `answer`?
 
 ```fsharp
 match answer with
@@ -53,7 +53,7 @@ match answer with
 | _ -> printfn "You know the question"
 ```
 
-In this case the _ placeholder is a catch all pattern. Which means you need to be careful about the order in which you list the patterns:
+In this case the `_` placeholder is a catch all pattern. Which means you need to be careful about the order in which you list the patterns:
 
 ```fsharp
 match answer with // does not compile
@@ -65,7 +65,7 @@ This is syntactically correct - but not semantically. The compiler will reject i
 
 _So be sure to order the patterns from specific to general._
 
-But _match_ is more than the _switch_ you know from other languages. _match_ does not only work for scalar types. You can use it with collection types and structured types, too.
+But `match` is more than the `switch` you know from other languages. `match` does not only work for scalar types. You can use it with collection types and structured types, too.
 
 You can check for a certain tuple:
 
@@ -104,7 +104,7 @@ match l with
 ```
 
 ### Structure matching
-This is pretty nifty already, but _match_ can do even more. So far you've seen value patterns: a given value is compared to other values, the patterns.
+This is pretty nifty already, but `match` can do even more. So far you've seen value patterns: a given value is compared to other values, the patterns.
 
 Often, though, the pieces of a structure or collection value are not known (or are not important). Rather you're interested in it's structure. Take a list for example. How do you decompose a list? You can do it like this:
 
@@ -126,9 +126,18 @@ let p = ("Mary", 42)
 let name, age = p
 ```
 
-The structure on the left side of the = must match the structure of the value on the right side.
+The structure on the left side of the `=` must match the structure of the value on the right side.
 
-So how to decompose a list safely? _match_ to the rescue:
+And this does not only work in let bindings but also with function parameters:
+
+```fsharp
+let print_person (name, age) =
+    printfn "%s is %d years old" name age
+    
+print_person p
+```
+
+So how to decompose a list safely? `match` to the rescue:
 
 ```fsharp
 match l with
@@ -136,9 +145,9 @@ match l with
 | head :: tail -> printfn "%d - %A" head tail
 ```
 
-Instead of making the pattern an exact value you just describe the structure you're looking for using placeholders.
+Instead of making the pattern an exact value you just describe the structure you're looking for by using placeholders.
 
-Those placeholders then are bound to the values found in the given value in the places they represent. You can use them on the right side of the -> operator.
+Those placeholders then are bound to the values found in the given value in the places they represent. You can use them on the right side of the `->` operator.
 
 Here's how you can react to persons with certain characteristics using placeholders:
 
@@ -149,32 +158,32 @@ match p with
 | _ -> printfn "Not interested"
 ```
 
-Or try to group the elements in a list in a pairwise manner, i.e. [2; 4; 6] would lead to [(2,4); (6;8)]. Here's how to do it with _match_:
+Or try to group the elements in a list in a pairwise manner, i.e. `[2; 4; 6]` would lead to `[(2,4); (6;6)]`. Here's how to do it with `match`:
 
 ```fsharp
 let even = [2; 4; 6]
 
 let pair l =
-    let rec pair' l r =
+    let rec pair' r l = 
         match l with
         | [] -> r
         | [x] -> (x,x) :: r
-        | x :: y :: tail -> pair' tail ((x,y) :: r)
-    pair' l [] |> List.rev
-
+        | x :: y :: tail -> pair' ((x,y) :: r) tail 
+    pair' [] l |> List.rev
+    
 printfn "%A" (pair even)
 ```
 
 Of course the list is processed recursively. On each recursion the remaining list is checked for certain structural patterns: is it empty, or does it only contain a single element, or does it contain at least two elements (plus maybe some more)?
 
-If there are at least two elements in the list they are combined into a tuple and prepended to the resulting list of pairs (parameter r).
+If there are at least two elements in the list they are combined into a tuple and prepended to the resulting list of pairs (parameter `r`).
 
-(Prepending (_(x,y) :: r_) might be a bit more natural than appending (_r @ [(x,x)]_) since result r is already a list; but then the result has to be inverted at the end. On the other hand appending requires a tad less code. You choose ;-)
+Prepending `(x,y) :: r` might be a bit more natural than appending `r @ [(x,x)]` since result `r` is already a list; but then the result has to be inverted at the end (`List.rev`). On the other hand appending requires a tad less code - but also has higher runtime costs. You choose ;-)
 
 ### Conditional matching
 So far pattern matching works based on structure and exact values. But what if the cases should be distinguished where the structure is the same, but the values differ? Take for example the "FizzBuzz" kata again.
 
-Using _if-then-else_ the comparison looks like this:
+Using `if-then-else` the comparison looks like this:
 
 ```fsharp
 let fizzbuzz i =
@@ -190,7 +199,7 @@ let fizzbuzz i =
 
 For each case there is a special expression.
 
-This can be done using _match_ too using guarded matches with _when_:
+This can be done with `match` too using so called _guarded matches_ with `when`:
 
 ```fsharp
 let fizzbuzz i =
@@ -202,7 +211,7 @@ let fizzbuzz i =
 
 ```
 
-Do a structure match and then add a conditional expression after _when_ to work with the pattern placeholders.
+Do a structure match and then add a conditional expression after `when` to work with the pattern placeholders.
 
 Of course this can be done in an even more readable manner:
 
@@ -219,14 +228,14 @@ let fizzbuzz i =
     | x -> x.ToString()
 ```
 
-With guarded or conditional matches _match_ truely becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use _if-then-else_ less and less. It will become more of just a ternary operator used in expressions, e.g.
+With guarded or conditional matches `match` truely becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use `if-then-else` less and less. It will become more of just a ternary operator used in expressions, e.g.
 
 ```fsharp
 let line' = line + (if line = "" then "" else ",") + word
 ```
 
 ### Shortcut
-Since _match_ is used so frequently it should come as no surprise that there is a shortcut for it. If you find yourself defining a function just for the purpose of doing a match like _fizzbuzz_ above, then you can shorten it like this:
+Since `match` is used so frequently it should come as no surprise that there is a shortcut for it. If you find yourself defining a function just for the purpose of doing a match like `fizzbuzz` above, then you can shorten it like this:
 
 ```fsharp
 let fizzbuzz = function
@@ -236,7 +245,7 @@ let fizzbuzz = function
     | x -> x.ToString()
 ```
 
-You can drop the singe function parameter as well as _match-with_. Instead write _function_ after the = of a _let_ binding followed by the patterns.
+You can drop the singe function parameter as well as `match ... with`. Instead write `function` after the `=` of a let binding followed by the patterns.
 
 This kind of match-function can be used wherever a function value (lambda expression) is allowed, e.g.
 
@@ -246,7 +255,16 @@ This kind of match-function can be used wherever a function value (lambda expres
 
 As you can see, even the vertical bar before the first pattern can be dropped.
 
-Unfortunately the _function_ shortcut may not be used for functions with more than one parameter like the recursive _pair'_ above.
+This also works for functions with more than parameter like `pair'` above. Just be sure to pass in the value to match as the last parameter:
+
+```
+let pair l =
+    let rec pair' r = function
+        | [] -> r
+        | [x] -> (x,x) :: r
+        | x :: y :: tail -> pair' ((x,y) :: r) tail 
+    pair' [] l |> List.rev
+```
 
 ***
 

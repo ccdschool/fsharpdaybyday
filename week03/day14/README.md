@@ -1,5 +1,5 @@
 # Day #14 - Exceptions
-So much can go wrong at runtime. What can you do to mitigate the effects? If the error is signalled by an exception, then you can catch the exception and log it. F# offers a _try...with_ expression for that similar to _try...catch_ in C#.
+So much can go wrong at runtime. What can you do to mitigate the effects? If the error is signaled by an exception, then you can catch the exception and log it. F# offers a `try...with` expression for that similar to `try...catch` in C#.
 
 ## Catching exceptions
 Here's how you can "safely" read a file for example:
@@ -12,15 +12,15 @@ with
        ""
 ```
 
-_try...with_ is an expression, i.e. it returns a value in all cases. If reading from the file succeeds, the file's content is the result. If it fails, an empty string is returned.
+`try...with` is an expression, i.e. it returns a value in all cases. If reading from the file succeeds, the file's content is the result. If it fails, an empty string is returned.
 
 And upon failure the exception is printed to the console.
 
-Note the "" at the end? Since _try...with_ is a multi-branch expression like _if...then...else_ it needs to return a value of the same type from all branches.
+Note the `""` at the end? Since `try...with` is a multi-branch expression like `if...then...else` it needs to return a value of the same type from all branches.
 
-You'll surely recognize _try...with_ to be similar to _match...with_. But instead of comparing the value between _try...with_ to some patterns, it's the exception that gets compared.
+You'll surely recognize `try...with` to be similar to `match...with`. But instead of comparing the value between `try...with` to some patterns, it's the exception that gets compared.
 
-To just get at the exception, do like above. But if you want to react differently depending on the type of exception, then you need to add patterns after _with_, e.g.
+To just get at the exception, do like above. But if you want to react differently depending on the type of exception, then you need to add patterns after `with`, e.g.
 
 ```fsharp
 try
@@ -32,15 +32,15 @@ with
 		...
 ```
 
-The _:?_ operator is for comparison with object types (e.g. _System.IO.StreamReader_, but not _System.DateTime_). You can use it in pattern matching like above or as an infix operator:
+The `:?` operator is for comparison with object types (e.g. `System.IO.StreamReader`, but not `System.DateTime`). You can use it in pattern matching like above or as an infix operator:
 
 ```fsharp
 if s :? System.IO.StreamReader then ... else ...
 ```
 
-Other than with _match..._with_ the list of patterns does not need to be exhaustive. Exceptions not matched simply will bubble up the exception handling stack.
+Other than with `match...with` the list of patterns does not need to be exhaustive. Exceptions not matched simply will bubble up the exception handling stack.
 
-Remember the _TryParse()_ method? What if it did not exist and there just was a _Parse()_? With _try...with_ you could easily build your own. Just convert the exception into an Option type value:
+Remember the `TryParse()` method? What if it did not exist and there just was a `Parse()`? With `try...with` you could easily build your own. Just convert the exception into an Option type value:
 
 ```fsharp
 let try_parse_int text =
@@ -60,13 +60,13 @@ else
     failwith "File not found!"
 ```
 
-_failwith_ raises a _System.Exception_. And if you want that to be formatted, use _failwithf_ like _printf_:
+`failwith` raises a `System.Exception`. And if you want the message to be formatted, use `failwithf` like `printf`:
 
 ```fsharp
 failwithf "File not found: %s" filename
 ```
 
-For more specific exceptions, use _raise_ with any exception type. No _new_ required for the exception class!
+For more specific exceptions, use `raise` with any exception type. No `new` required for the exception class!
 
 ```fsharp
 raise (System.ArgumentException("Value must be in range 0..99.", "length"))
@@ -94,7 +94,7 @@ exception MyError
 exception InvalidPosition of int * int
 ```
 
-An exception is a special type definition starting with _exception_ followed by the exception's name and optionally a parameter type. In this case that's a tuple for _InvalidPosition_.
+An exception is a special type definition starting with `exception` followed by the exception's name and optionally a parameter type. In this case that's a tuple for `InvalidPosition`.
 
 This means you could define a exception like this:
 
@@ -109,7 +109,7 @@ type Person = {name:string; age:int}
 exception InvalidPerson' of Person
 ```
 
-Self-defined exception types derive from _System.Exception_ but do not follow the convention of giving them the suffix "Exception".
+Self-defined exception types derive from `System.Exception` but do not follow the convention of giving them the suffix "Exception".
 
 You then throw and catch your own exceptions as usual:
 
@@ -126,7 +126,7 @@ with
 Note, however, that you don't need the type comparison operator in patterns with your own exception types!
 
 ## Clean up
-In F# you either catch exceptions with _try...with_ or you clean up after an exception _try...finally_.
+In F# you either catch exceptions with `try...with` _or_ you clean up after an exception `try...finally`.
 
 ```fsharp
 try
@@ -142,13 +142,13 @@ with
 | x -> printfn "%A" x
 ```
 
-As you can see, _try..with_ and _try...finally_ can be nested - but not combined in one expression. View it as an application of the Single Responsibility Principle.
+As you can see, `try..with` and `try...finally` can be nested - but not combined in one expression. View it as an application of the Single Responsibility Principle.
 
-Other than a _with_ clause, _finally_ should not return a value but _unit_ the "no value" value of F#.
+Other than a `with` clause, `finally` should not return a value but `unit`, the "no value" value of F#.
 
-_1 + 1_ returns an _int_ value, but for example _printf_ returns _unit_ or "nothing".
+`1 + 1` returns an `int` value, but for example `printf` returns `unit` or "nothing".
 
-_unit_ is a value, but it's a special one signalling "no value". Where in C# _void f(...)_ defines a procedure not returning anything, in F# a definition like
+`unit` is a value, but it's a special one signaling "no value". Where in C# `void f(...)` defines a procedure not returning anything, in F# a definition like
 
 ```fsharp
 let f : unit = ...
@@ -157,9 +157,9 @@ let f : unit = ...
 still creates a function, but one which returns "nothing".
 
 ## Using resources
-_finally_ is executed in all case as usually. But there's one situation you don't need it for: closing an _IDisposable_ resource.
+`finally` is executed in all case as usual. But there's one situation you don't need it for: closing an `IDisposable` resource.
 
-In C# you make sure _IDisposable.Dispose()_ gets called by wrapping usage of a resource object in a _using_ statement:
+In C# you make sure `IDisposable.Dispose()` gets called by wrapping usage of a resource object in a `using` statement:
 
 ```csharp
 using (var sw = new StreamWriter ("xxx.txt")) {
@@ -167,7 +167,7 @@ using (var sw = new StreamWriter ("xxx.txt")) {
 }
 ```
 
-F# does not require a special construct for that. Rather it relies on the scope of a binding. If a binding for an _IDisposable_ resource goes out of scope _Dispose()_ is called automatically - if you bind the object with _use_ instead of _let_.
+F# does not require a special construct for that. Rather it relies on the scope of a binding. If a binding for an `IDisposable` resource goes out of scope `Dispose()` is called automatically - if you bind the object with `use` instead of `let`.
 
 ```fsharp
 let write (text:string) =
@@ -177,7 +177,7 @@ let write (text:string) =
 
 ***
 
-Do you now finally feel prepared for real world programming with F# with exceptions under your belt? ;-) Great. So let's tackle another application kata tomorrow...
+Do you now finally feel prepared for real world programming in F# with exceptions under your belt? ;-) Great. So let's tackle another application kata tomorrow...
 
 ### Read more
 Exceptions
@@ -186,7 +186,7 @@ Exceptions
 * Scott Wlaschin, [Exceptions - Syntax for throwing and catching](http://fsharpforfunandprofit.com/posts/exceptions/)
 * Wikibooks, [F Sharp Programming / Exception Handling](https://en.wikibooks.org/wiki/F_Sharp_Programming/Exception_Handling)
 
-Returnung "nothing" from functions
+Returning "nothing" from functions
 
 * Microsoft, [Unit Type (F#)](https://msdn.microsoft.com/en-us/library/dd483472.aspx)
 

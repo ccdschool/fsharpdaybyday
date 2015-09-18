@@ -23,8 +23,8 @@ let main argv =
 
         let negate_smaller_values values =
             let nvalues = Array.copy values
-            List.iter (fun i -> nvalues.[i] <- nvalues.[i] * (if nvalues.[i] < nvalues.[i+1] then -1 else 1)) 
-                      [0..nvalues.Length-2]
+            [0..nvalues.Length-2]
+            |> List.iter (fun i -> nvalues.[i] <- nvalues.[i] * (if nvalues.[i] < nvalues.[i+1] then -1 else 1))
             nvalues
         
         roman |> map_digits_to_values

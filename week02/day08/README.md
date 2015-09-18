@@ -1,9 +1,9 @@
 # Day #8 - Arrays
 Learning a language is easier when you know why, when you have a goal. That's why today's lesson starts with a kata. First the problem, then an introduction to helpful language features.
 
-Please have a look at the [requirements document](https://app.box.com/s/z07b8gr6e1ngvb3cg7ps78zy2ddi3vx1). The requested solution is still small, but there is enough to learn for it for a couple of days.
+Please have a look at the [requirements document](https://app.box.com/s/z07b8gr6e1ngvb3cg7ps78zy2ddi3vx1). The requested solution is still small, but there is enough to learn in it for a couple of days.
 
-Let's start with a list of features that need to be implemented. From that we can get an idea what's missing in our F# toolbox.
+Let's start with a list of features that need to be implemented. From that you can get an idea what's missing in your F# toolbox.
 
 * A program, not just a function needs to be written. That means, at least in the end you need to use an IDE like Visual Studio or Xamarin Studio to compile the code into a standalone executable for your operating system.
 * The program needs access to the command line to read the number to convert.
@@ -26,9 +26,9 @@ let main argv =
     0
 ```
 
-Any function can be marked as the entry point; use the attribute _[<EntryPoint>]_ to do that. (Note the difference in syntax between F# and C#: attributes are enclosed in [< >] in F#.)
+Any function can be marked as the entry point; use the attribute `[<EntryPoint>]` to do that. (Note the difference in syntax between F# and C#: attributes are enclosed in `[< >]` in F#.)
 
-The entry point function then needs to be of type _string[] -> int_. The command line parameters are passed in as a _string_ array. And it returns an _int_ exit code; that's why 0 is on the last line of the function's body. Remember: _printf_ does not return a real value, just _unit_.
+The entry point function then needs to be of type `string[] -> int`. The command line parameters are passed in as a `string` array. And it returns an `int` exit code; that's why `0` is on the last line of the function's body. Remember: `printf` does not return a real value, just `unit`.
 
 In C# this looks a bit more elaborate: a class is needed, the method must be made static, curly braces delineate the scope of the function, there is no "native" function to write to standard output; it can but need not return an exit code.
 
@@ -58,11 +58,11 @@ let square x = x * x
 List.map square numberlist
 Array.map square numberarray
 
-printfn "%d" (numberlist.Item(0))
+printfn "%d" numberlist.[0]
 printfn "%d" numberarray.[0]
 ```
 
-Array literals are denoted by [| and |], though. And to get at an array element you use .[index].
+Array literals are denoted by `[|` and `|]`, though. But to get at an array element you use `.[index]` like for lists.
 
 So why have arrays and lists, if they are so similar? The difference is beneath the surface.
 
@@ -74,31 +74,39 @@ Here's how you change an element of an array:
 numberarray.[0] <- 99
 ```
 
-Use either the <- operator or the _set_ function:
+Use either the `<-` operator or the `set` function:
 
 ```fsharp
 Array.set numberarray 0 99
 ```
 
-The fixed size nature of arrays becomes apparent when you create them. You can use a literal like above or the _create_ function:
+The fixed size nature of arrays becomes apparent when you create them. You can use a literal like above or the `create` function:
 
 ```fsharp
 let numberarray = Array.create 3 0
-numberarray.[0] = 1
-numberarray.[1] = 2
-numberarray.[2] = 3
+numberarray.[0] <- 1
+numberarray.[1] <- 2
+numberarray.[2] <- 3
 ```
 
-Lists are meant to grow. That's why there are operators like :: and @ and even more F# features tailored to list manipulation.
+Lists are meant to grow. That's why there are operators like `::` and `@` and even more F# features tailored to list manipulation.
 
-Arrays are not meant to grow. So there are no special language features for that. Nevertheless you can append or "contract" arrays - but this always creates new arrays.
+Arrays are not meant to grow. So there are no special language features for that. Nevertheless you can append to or "contract" arrays - but this always creates new arrays.
 
 ```fsharp
 let numbers = Array.append [|1;2|] [|3;4;5|]
 let middlepart = Array.sub numbers 1 3
 ```
 
-_sub_ extracts an number of array elements starting at a specified index.
+`Array.sub` extracts a number of array elements starting at a specified index.
+
+Alternatively you can use index ranges to extract stretches of array elements:
+
+```fsharp
+numbers.[1..3] // like Array.sub numbers 1 3
+numbers.[3..] // start at index 3
+numbers.[..3] // only up to index 3
+```
 
 How to choose between arrays and lists? Let your default be lists. They are more flexible. But if you need more efficiency or mutability or interoperability with the CLR/BCL, then choose arrays.
 
@@ -125,3 +133,11 @@ You find the full source in the [repo](src/convertroman/Program.fs).
 ***
 
 Three of six features implemented. Not bad for a short day of F#. But how to decide between the number systems? That's the topic for tomorrow.
+
+***
+
+PS: Just in case you want to know: You don't really need an IDE for this kind of project. You can stick to a text editor like [Sublime](http://www.sublimetext.com) and use _fsharpc_, the F# command line compiler.
+
+![](images/w02d08b.png)
+
+The compiler comes with Mono like the C# compiler.
