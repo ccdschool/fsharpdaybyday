@@ -18,9 +18,9 @@ Fortunately there are only a few such possible combinations, which could be call
 
 The solution steps now seem to be clear:
 
-1. Factorize the arabic number, e.g. 42 becomes [40, 1, 1]
-2. Translate the factors into symbols, e.g. [40, 1, 1] becomes ["XL", "I", "I"]
-3. Finally build the roman number from the symbols (digits and syllables) , e.g. ["XL", "I", "I"] is combined into "XLII"
+1. Factorize the arabic number, e.g. `42` becomes `[40, 1, 1]`
+2. Translate the factors into symbols, e.g. `[40, 1, 1]` becomes `["XL", "I", "I"]`
+3. Finally build the roman number from the symbols (digits and syllables) , e.g. `["XL", "I", "I"]` is combined into `"XLII"`
 
 ## Implementation
 Implementing the steps is straightforward with what you already know. The factorization can be done recursively. See how the result is accumulated stepwise in the last parameter - and the first parameter is a stepwise "shrinking problem":
@@ -30,7 +30,7 @@ let factorize arabic =
     let values = [1000; 900; 500; 400; 100; 90; 
     				 50; 40; 10; 9; 5; 4; 1]
 
-    let rec factorize' arabic (values:int list) factors =
+    let rec factorize' arabic (values: int list) factors =
         if arabic = 0 then
             factors
         else 
@@ -53,7 +53,7 @@ let symbolize factors =
     					   (100, "C"); (90, "XC"); (50, "L"); (40, "XL"); 
     					   (10, "X"); (9, "IX"); (5, "V"); (4, "IV"); (1, "I")]
 
-    factors |> List.map (fun k -> symbols.Item(k))
+    factors |> List.map (fun k -> symbols.[k])
 ```
 
 Which leads to the full solution of the arabic to roman conversion:
@@ -68,7 +68,7 @@ Problem solved. Case closed.
 
 Or maybe not. Because the solution does not really feel DRY. There are two occurrences of the values; they are used during factorization as well as during symbolization.
 
-This can be improved by extracting the _symbols_ dictionary from _symbolize_ and share it with _factorize_. Factorization can then get the values needed from the dictionary:
+This can be improved by extracting the `symbols` dictionary from `symbolize` and share it with `factorize`. Factorization can then get the values needed from the dictionary:
 
 ```fsharp
 let values = symbols.Keys |> Seq.toList
@@ -91,9 +91,9 @@ let (name, age) = person
 ```
 
 ## Type alias
-Tuples are ad hoc data types. No declaration needed, just throw together a couple of values and let F# bind them together into a new type. For the above _person_ tuple value that would be _string * int_ as explained on day #9.
+Tuples are ad hoc data types. No declaration needed, just throw together a couple of values and let F# bind them together into a new type. For the above `person` tuple value that would be `string * int` as explained on day #9.
 
-But what about "real" types? Of course F# lets you define your own  types. Here is the simplest way to do this:
+But what about "real" types? Of course F# lets you define your own types. Here is the simplest way to do this:
 
 ```fsharp
 type Distance = float
@@ -116,7 +116,7 @@ let print'' (friends: Names) =
     ...
 ```
 
-They are progressively more specific and more meaningful. To explicitly make _friends_ to be of type _Names_ compared to _string list_ makes the function definition more expressive. Also it makes it easier to change the type of _friends_ wherever this kind of data is used, e.g.
+They are progressively more specific and more meaningful. To explicitly make `friends` to be of type `Names` compared to `string list` makes the function definition more expressive. Also it makes it easier to change the type of `friends` wherever this kind of data is used, e.g.
 
 ```fsharp
 let print (friends: Names) =
@@ -127,12 +127,22 @@ let store (friends: Names) =
 	...
 ```
 
-If you wanted to change the data structure holding _friends_ from _string list_ for example to _string array_ you'd need to do that only in one place.
+If you wanted to change the data structure holding `friends` from `string list` for example to `string array` you'd need to do that only in one place.
 
-Type aliases are useful to give meaning and constrain.
+Type aliases are useful to give meaning - but they don't add real constrains. As you can see, assignment across type aliases is possible as long as the underlying type is the same:
+
+```fsharp
+type A = int
+type B = int
+
+let (a:A) = 5
+let (b:B) = a
+```
+
+That's not what you usually want when you start using your own types.
 
 ## Tuple types
-As you've see you can give an alias not only to scalar types like _int_ or _bool_ but also to collection types like _string list_. The same is true for tuples.
+As you've seen you can give aliases not only to scalar types like `int` or `bool` but also to collection types like `string list`. The same is true for tuples.
 
 If you want to constrain (or document) a function expecting a tuple you can define your own tuple type:
 
@@ -148,7 +158,7 @@ print ("Peter", 42)
 This is equivalent to, but shorter and easier to change than
 
 ```fsharp
-let print (name:string, age:int) =
+let print (name: string, age: int) =
 	...
 ```
 
@@ -167,9 +177,9 @@ To create a record value assign values to its fields like this:
 let p = {Name="Peter"; Age=42}
 ```
 
-Each field must be assigned to! That's necessary since record types like all other F# types are immutable by default. So you want to be sure all fields have values right after record creation. No "partial creation" allowed.
+Each field must be assigned to! That's necessary since record types like all other F# types are immutable by default. You want to be sure all fields have values right after record creation. No "partial creation" allowed.
 
-When you want to access record fields do it like in many other languages, use the . operator:
+When you want to access record fields do it like in many other languages, use the `. operator:
 
 ```fsharp
 printfn "%s is %d years old" p.Name p.Age
@@ -187,7 +197,7 @@ Records once created are immutable. But F# helps you to create new records from 
 let q = {p with Name="Bella"}
 ```
 
-Instead of filling in all fields use an existing record value like p in the previous example and then - after _with_ - assign values to fields that you want to change.
+Instead of filling in all fields use an existing record value like `p` in the previous example and then - after `with` - assign values to fields that you want to change.
 
 ## Using records in roman conversion
 With records under our belt we can rework our roman conversion approach.
@@ -206,7 +216,7 @@ let convert_to_roman (arabic:ArabicNumber) : RomanNumber =
 
 Constraining input parameters as well as the function result makes the function signatures very specific. It's now perfectly clear what's allowed to go in - what will be produced.
 
-Even though F# in many cases does not need type annotations it can be helpful to at least constrain public or API functions.
+Even though F# in many cases does not need type annotations it can be helpful to at least annotate public or API functions - they can serve as beautiful documentation.
 
 Secondly let's set up the core dictionary of the application mapping textual symbols to values.
 
@@ -222,7 +232,7 @@ let symbols = [{Text="M"; Value=1000}; {Text="CM"; Value=900};
                {Text="I"; Value=1}]
 ```
 
-Even though this is conceptually a dictionary or mapping it's not so formally. Rather than using a _dict_ type a _list_ of records is used. Remember the requirement of symmetric data? Neither symbol text nor symbol value should have priority.
+Even though this is conceptually a dictionary or mapping it's not so formally. Rather than using a `dict` type a `list` of records is used. Remember the requirement of symmetric data? Neither symbol text nor symbol value should have priority.
 
 From this dictionary the list of valid characters in a roman number can be derived for number category checking:
 
