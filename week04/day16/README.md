@@ -6,9 +6,9 @@ As you might remember, the happy day data flow looks like this:
 
 ![Figure 1](images/fig1.jpeg)
 
-_get locations_ and _report results_ seem easy enough. They can be straightforwardly implemented.
+`get locations` and `report results` seem easy enough. They can be straightforwardly implemented.
 
-But what does _acquire_ mean? A list of filenames ans foldernames has to be transformed into a long list of source lines accompanied with the number of relevant files found.
+But what does `acquire` mean? A list of filenames ans foldernames has to be transformed into a long list of source lines accompanied with the number of relevant files found.
 
 For the analysis it's not important to keep the lines of one source file separat from those of another. That's why it's just one long list.
 
@@ -16,7 +16,7 @@ But surely this task should not be accomplished by just one bubble. There seem t
 
 ![Figure 2](images/fig2.jpeg)
 
-By this _acquire_ has turned from an assumed operation into an integration. It doesn't do any hard work itself, but coordinates other bubbles to do it. Like _main_ does.
+By this `acquire` has turned from an operation into an integration. It doesn't do any hard work itself, but coordinates other bubbles to do it. Like `main` does.
 
 This part of the solution now is looking simple enough. It's ready for coding...
 
@@ -30,7 +30,7 @@ locations |> Filesystem.acquire_source_lines
 0
 ```
 
-The new integration function _acquire_source_lines_ is part of the _Filesystem_ module. The same should now be true for its operations:
+The new integration function `acquire_source_lines` is part of the `Filesystem` module. The same should now be true for its operations:
 
 ```fsharp
 module Filesystem =
@@ -49,19 +49,19 @@ The translation of the integration bubble is simple enough. It becomes a functio
 ### Function composition
 As it turns out, though, this kind of integration is pretty common: a pipeline of functions fueled by a single input parameter.
 
-That's why F# provides a shortcut for this pattern. With the function composition operator >> you can shrink the function:
+That's why F# provides a shortcut for this pattern. With the function composition operator `>>` you can shrink the function:
 
 ```fsharp
 let acquire_source_lines =
     find_source_files >> compile_source_lines
 ```
 
-You can leave out the parameter. The function thus only consists of functions strung together by >>.
+You can leave out the parameter. The function thus only consists of functions strung together by `>>`.
 
 Function composition welds together pieces into a new whole. That's why the parameter is not necessary. What needs to flow in is derived from the first function.
 
 ### Unit tests
-Implementing file aquisition was easy. But what about its processing steps? They don't seem trivial. You probably can't just write their down their logic. Better to develop that in increments. It's time for some test-first development.
+Implementing file acquisition was easy. But what about its processing steps? They don't seem trivial. You probably can't just write their down their logic. Better to develop that in increments. It's time for some test-first development.
 
 Fortunately doing that is easy with F#. As easy as it is with C#. You can use the same tools, for example NUnit.
 
@@ -71,7 +71,7 @@ Here's how it can be done for this kata:
 
 1. Set up a library test project in the VS.NET/Xamarin Studio solution.
 2. Add NUnit via Nuget to the test project.
-3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the _sampledata_ folder in the project in Figure 3. Or go [here](../../week03/day15/src/loc/loc_tests) for the test sources.
+3. Then set up sample data in the test project. Set the properties of the files so they get deployed to the target directory upon compilation. See the `sampledata` folder in the project in Figure 3. Or go [here](../../week03/day15/src/loc/loc_tests) for the test sources.
 4. Set up your first test like this:
 
 ```fsharp
@@ -87,13 +87,13 @@ let ``load lines of one file``() =
     Assert.AreEqual(7, lines.Length)
 ```
 
-Putting the tests in a module and opening namespaces is straightforward. What's interesting is how you designate a F# function as a NUnit test case: Just put the _[<Test>]_ attribute on a function let binding. And be sure to add () to the function name to tell the compiler it's a function value without parameters.
+Putting the tests in a module and opening namespaces is straightforward. What's interesting is how you designate a F# function as a NUnit test case: Just put the `[<Test>]` attribute on a function let binding. And be sure to add `()` to the function name to tell the compiler it's a function value without parameters.
 
-That's it. No test class with _[<TestFixture>]_ needed like in C#. Just test functions.
+That's it. No test class with `[<TestFixture>]` needed. Just test functions.
 
-You can use the familiar NUnit _Assert_ methods to check your expectations. Or you might want to add some more F# like unit testing power, e.g. from FSUnit. But to get you started NUnit should be enough. Stay close to home for now :-)
+You can use the familiar NUnit `Assert` methods to check your expectations. Or you might want to add some more F# like unit testing power, e.g. from FSUnit. But to get you started NUnit should be enough. Stay close to home for now :-)
 
-Note how F# lets you give test cases easy to read names: enclose them in two backticks and you can include whitespaces.
+Note how F# lets you give test cases easy to read names: enclose them in two backticks and you can include whitespaces or special characters.
 
 With a couple of tests in place the implementation of the source line compilation is easy:
 
@@ -116,7 +116,7 @@ Loading the source lines of several files just takes:
 filenames |> List.map to_lines
 ```
 
-A list of filesnames is mapped to a list of lists of source lines, e.g.
+A list of filenames is mapped to a list of lists of source lines, e.g.
 
 ```fsharp
 [
@@ -130,13 +130,13 @@ But what should be delivered is just a flat list of source lines across all file
 
 ```fsharp
 [
-	"using System"; ""; "class Program {"; ...
+	"using System"; ""; "class Program {"; ...;
 	"using NUnit.Framework"; ""; "[TestFixture]"; ...
 	...
 ]
 ```
 
-This feat is accomplished by _List.concat_. It takes a list of lists and appends all elements of all lists into a new list.
+This feat is accomplished by `List.concat`. It takes a list of lists and appends all elements of all lists into a new list.
 
 ***
 

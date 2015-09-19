@@ -16,18 +16,18 @@ let b = Inch 10.0
 This way numeric values could be more strongly typed and made incompatible on purpose:
 
 ```fsharp
-let c = a + b // does not work
+let c = a + b // won't compile
 ```
 
 Great! But look:
 
 ```fsharp
-let c = a + a // does not work
+let c = a + a // won't compile
 ```
 
-Event though both operands are of the same type the addition does not work. Bummer. The operator is defined for `int` or `float` values, but for some obscure type `L` which only incidentally contains a `float`.
+Event though both operands are of the same type the addition does not work. Bummer. The operator is defined for `int` or `float` values, but not for some obscure type `L` which only incidentally contains a `float`.
 
-You'd have to overload `+` to make up for that and get a true typesafe addition of `L` values:
+You'd have to overload `+` to make up for that and get a true type safe addition of `L` values:
 
 ```fsharp
 let (+) (L x) (L y) = L (x + y)
@@ -37,7 +37,7 @@ let c = a + a
 
 Great again! Type safety achieved.
 
-Or maybe not so great. Because this is a common scenario but it requires quite some effort to make it typesafe.
+Or maybe not so great. Because this is a common scenario but it requires quite some effort to make it type safe.
 
 The common scenario is: Do calculations with numbers of a certain kind. Where _certain kind_ means "with an attached unit of measure".
 
@@ -48,14 +48,14 @@ Such units of measure are not so much a matter of mathematics. But in physics an
 What's the right way?
 
 * Adding and subtracting numbers with the same unit of measure is ok.
-* Multiplying and dividing numbers with different units of measure is ok, too.
+* Multiplying and dividing numbers with different units of measure is ok, too. But leads to a new unit of measure.
 
-The result of `2m + 3m` is `5m`. But the result of `2m + 10"` is not defined; you first have to convert one of the operands to the unit of measure of the other - if that's possible at all. It works for m and inch, but not for m and kg.
+The result of `2m + 3m` is `5m`. But the result of `2m + 10"` is not defined; you first have to convert one of the operands to the unit of measure of the other - if that's possible at all. It works for _m_ and _inch_, but not for _m_ and _kg_.
 
 The result of `2m / 10kg`, though, is `0.2m/kg` - whatever that means ;-)
 
 ## Defining units of measure
-With F# you finally are able to easily make such calculations typesafe where units of measures are involed. F# allows you to define your own units of measures. Just prefix a type with just a name with the attribute `[<Measure>]`:
+With F# you finally are able to easily make such calculations type safe where units of measures are involved. F# allows you to define your own units of measures. Just prefix a type with just a name with the attribute `[<Measure>]`:
 
 ```fsharp
 [<Measure>] type l
@@ -71,10 +71,10 @@ let b = 10<inch>
 
 This also looks more natural than the above experiment with union types, doesn't it.
 
-As you would expect this prevents values with different units of measures to be added:
+As you would expect this prevents values with different units of measures from being added:
 
 ```fsharp
-let c = a + b // does not work
+let c = a + b // won't compile
 ```
 
 But now the addition (and subtraction) of like values is possible:
@@ -83,7 +83,7 @@ But now the addition (and subtraction) of like values is possible:
 let c = a + a
 ```
 
-Truely great!
+Truly great!
 
 And what about multiplication and division? Works like a charm:
 
@@ -128,7 +128,7 @@ let r = u / i
 let u' = 3.0<Ω> * i
 ```
 
-And in case you seem to forget Ohm's law you wrap it up in a neat little function:
+And in case you seem to always forget Ohm's law you wrap it up in a neat little function:
 
 ```fsharp
 let calc_current (u:float<V>) (r:float<Ω>) : float<A> = 
@@ -140,7 +140,7 @@ let calc_resistance (u:float<V>) (i:float<A>) : float<Ω> =
 let r = calc_resistance u i
 ```
 
-Presto! Not only typesafe but "unit-safe" calculations.
+Presto! Not only type safe but "unit-safe" calculations.
 
 ## Converting to/from units of measure
 Units of measure work fine for the basic math operations like +, -, *, /, . But if you want to do more sophisticated stuff like calculating the sine of a meter-value you're stuck. You need to strip the unit of measure off the value.
@@ -172,7 +172,7 @@ let rawData = 5
 let d = rawData * 1<m>
 ```
 
-Just keep one thing in mind: Units of measure are just a matter of the compiler. You won't find them in compiled code. And don't expect other languages you interoperate with to honor them. They are a F# specific feature.
+Only keep one thing in mind: Units of measure are just a matter of the compiler. You won't find them in compiled code. And don't expect other languages you interoperate with to honor them. They are a F# specific feature.
 
 ***
 

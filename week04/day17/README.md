@@ -1,16 +1,16 @@
 # Day #17 - Active patterns
-Yesterday the focus was on gathering all the source lines to count from a list of files. That was step to in this sub-process:
+Yesterday the focus was on gathering all the source lines to count from a list of files. That was step two in this sub-process:
 
 ![](images/fig1.jpeg)
 
-Today question to be answered is: How to find all the relevant files?
+Today's question to be answered is: How to find all the relevant files?
 
 ## Solution design III
 The source files to analyze are given by name or by folder on the command line. The program first needs to check if they exist; and in case of folders it needs to crawl them for relevant files. Non-existing files are skipped; no exception needs to be thrown.
 
 ![](images/fig2.jpeg)
 
-Filtering sure is easy: only .cs files are relevant. But how to crawl? First a location has to be classified as valid filename or a valid foldername or as an invalid location. Only then the files in a folder can be compiled.
+Filtering sure is easy: only `.cs` files are relevant. But how to crawl? First a location has to be classified as a valid filename or a valid foldername or as an invalid location. Only then the files in a folder can be compiled.
 
 ![](images/fig3.jpeg)
 
@@ -34,9 +34,9 @@ let filter_files =
     List.filter is_relevant_file
 ```
 
-But how to translate the location classification? Sure, that can be done with some _if-then-else_ expressions. But that does not sound very F#-like. A _match-with_ would be better. However, the three cases which need to be distinguished cannot be recognized statically. A _Location_ does not give away whether it's a filename or a foldername just by looking at its string value.
+But how to translate the location classification? Sure, that could be done with some `if...then...else` expressions. But that does not sound very F#-like. A `match...with` would be better. However, the three cases which need to be distinguished cannot be recognized statically. A `Location` does not give away whether it's a filename or a foldername just by looking at its string value.
 
-If locations were just filenames then a _match-with_ would be easy. Classification could encode a valid filename as _Some filename_, and an invalid one as _None_.
+If locations were just filenames then a `match...with` would be easy. Classification could encode a valid filename as `Some filename`, and an invalid one as `None`.
 
 ```fsharp
 let classify filename =
@@ -48,7 +48,7 @@ location |> classify
             | None -> ...
 ```
 
-Remember: _function_ is a shortcut for _match-with_. It's a function to take a value to compare to its patterns.
+Remember: `function` is a shortcut for `match...with`. It's a function to take a value to compare to its patterns.
 
 In this case, though, there are three cases to distinguish. What to do?
 
@@ -61,7 +61,7 @@ locaction |> classify
              | None -> ...
 ```
 
-But that's not possible. Functions can have only have one result. That's why the classification needed to return an Option type value and let a subsequent _match-with_ decide upon it.
+But that's not possible. Functions can have only have one result. That's why the classification needed to return an Option type value and let a subsequent `match...with` decide upon it.
 
 Or maybe not :-) In fact F# functions can have multiple completely different exit points, not just one. However the syntax for that is a bit different. In the case of the location classification the application of such a function would look like this:
 
@@ -92,11 +92,11 @@ Usually the function name is thought of being a label for the entry point/input 
 
 ![](images/fig4b.jpeg)
 
-For imperative languages like C# or Java or Ruby that's perfectly fine. But what if function can have more than one output? Wouldn't it then be more useful to refer to the results by name instead of the single entry point?
+For imperative languages like C# or Java or Ruby that's perfectly fine. But what if functions can have more than one output? Wouldn't it then be more useful to refer to the results by name instead of the single entry point?
 
 ![](images/fig4c.jpeg)
 
-That's what F# allows you to do. How to do it you can see above: Use the multi-exit function in a _match-with_ to decide how to continue processing depending on which output data flows out of it. Use the different output names as references to the function. Even though there are several the function will only get called once, though.
+That's what F# allows you to do. How to do it you can see above: Use the multi-exit function in a `match...with` to decide how to continue processing depending on which output data flows out of it. Use the different output names as references to the function. Even though there are several the function will only get called once, though.
 
 But how to define such a multi-exit function? Here's how you do it for the location classification:
 
@@ -107,7 +107,7 @@ let (|File|Folder|Invalid|) location =
     else Invalid
 ```
 
-Instead of one function name you give it three, one for each output. You separate them by | and enclose them in "banana brackets" (|...|). This would be a depiction of it:
+Instead of one function name you give it three, one for each output. You separate them by `|` and enclose them in "banana brackets" `(|...|)`. This would be a depiction of it:
 
 ![](images/fig5a.jpeg)
 
@@ -127,11 +127,11 @@ let (|File|Folder|Invalid|) location =
     Invalid
 ```
 
-It's like with the Option type where you define a value to be _Some location_ or _None_.
+It's like with the Option type where you define a value to be `Some location` or `None` - only you define your own Option type right when you define your function.
 
-This way of deciding about how processing should continue is called Active Patterns. It's "patterns" because it requires a _match-with_ to work. It's called "active" because the matching is not done by fixed structural patterns but arbitrary computations at runtime. The patterns are dynamic so to speak.
+This way of deciding about how processing should continue is called _Active Patterns_. It's "patterns" because it requires a `match...with` to work. It's called "active" because the matching is not done by fixed structural patterns but arbitrary computations at runtime. The patterns are dynamic so to speak.
 
-Instead of the pattern itself you refer to them by a category name in your _match-with_.
+Instead of the pattern itself you refer to them by a category name (or function output label) in your `match...with`.
 
 ### Complete Active Patterns
 Active Patterns come in flavors. The one above is a so called complete Active Pattern. That means it has an arbitrary number of outputs.
@@ -159,10 +159,10 @@ let (|Valid|_|) data =
     else None
 ```
 
-It has "slots" for two exit points, but only the first one is named. And it returns values of an Option type. The named output represents the _Some_ value, the output with the placeholder character _ represents the _None_ value. And it's the this second output which lead to calling this Active Pattern incomplete. "None" just is not very specific; it's used for data which cannot or should not be categorized more specifically. Thus the categorization done by the function is incomplete or partial.
+It has "slots" for two exit points, but only the first one is named. And it returns values of an Option type. The named output represents the `Some` value, the output with the placeholder character `_` represents the `None` value. And it's the second output which leads to calling this Active Pattern incomplete. "None" just is not very specific; it's used for data which cannot or should not be categorized more specifically. Thus the categorization done by the function is incomplete or partial.
 
 ### Active Patterns with parameters
-What if an Active Pattern function requires more than a single input? Maybe the validation is dependent on regex pattern.
+What if an Active Pattern function requires more than a single input? Maybe the validation is dependent on a regex pattern.
 
 Whatever extra parameters are necessary have to go before (!) the value to categorize, e.g.
 
