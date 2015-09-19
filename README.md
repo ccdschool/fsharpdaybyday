@@ -55,7 +55,7 @@ And now, without further ado, enter into the realm of F# on [day #1](week01/day0
 
 ***
 
-Follow this tutorial on our Twitter account [@ccd_school](https://twitter.com/ccd_school); tweets with marked with #fsharpdaybyday.
+Follow this tutorial on our Twitter account [@ccd_school](https://twitter.com/ccd_school); tweets will be marked with #fsharpdaybyday.
 
 ***
 
