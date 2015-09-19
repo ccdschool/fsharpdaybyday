@@ -26,7 +26,7 @@ type Result = {numberOfFiles:int; totalLinesOfCode:int}
 
 and can be created like this:
 
-```
+```fsharp
 module LOC =
 	...
 	
