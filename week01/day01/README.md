@@ -100,4 +100,4 @@ Read more about literals [here](https://msdn.microsoft.com/en-us/library/vstudio
 
 ***
 
-So much for your first day of F#. Now you can write small programms sending greetings of all sorts to the world ;-)
+So much for your first day of F#. Now you can write small programs sending greetings of all sorts to the world ;-)
