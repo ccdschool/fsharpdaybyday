@@ -25,7 +25,7 @@ Or to be more precise: F# needs the parentheses if you put the operator function
 
 You see, F# sports all sorts of common operators in usual form. But note a couple of things:
 
-First, both parameters to binary operators must be of the same time. See `/` above. If you tried
+First, both parameters to binary operators must be of the same type. See `/` above. If you tried
 
 ```fsharp
 (/) 3.0 2 // does not compile
