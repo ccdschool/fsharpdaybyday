@@ -23,7 +23,7 @@ Or to be more precise: F# needs the parentheses if you put the operator function
 (<>) 7 2 // not equal
 ```
 
-You see, F# sports all sorts of common operators in usual form. But note a couple of things:
+You see, F# supports all sorts of common operators in usual form. But note a couple of things:
 
 First, both parameters to binary operators must be of the same type. See `/` above. If you tried
 
