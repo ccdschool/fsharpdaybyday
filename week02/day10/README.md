@@ -86,7 +86,7 @@ let square x = x * x
                 |> List.iter (printfn "%d")
 ```
 
-(Now you know the reason why the `List functions all take the list as their last parameter.)
+(Now you know the reason why the `List` functions all take the list as their last parameter.)
 
 This can be put to good use in our solution:
 
