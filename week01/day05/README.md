@@ -1,7 +1,7 @@
 # Day #5 - Simple decisions with if
 Programming is about data processing, i.e. calculating values and assigning them to variables. As you've seen, the first is true also for F#; but the latter is not really how you do things in Functional Programming languages. But don't let this worry you too much right now.
 
-As a small consolation today you'll meet an old aquaintant, a control structure like in any imperativ programming language. Meet the _if_ expression:
+As a small consolation today you'll meet an old acquaintance, a control structure like in any imperative programming language. Meet the _if_ expression:
 
 ```fsharp
 let name = "Peter"
@@ -37,7 +37,7 @@ printfn "%s" (greeting "Peter")
 
 `greeting` is a function with one parameter. Its definition spans several lines. So far functions were one-liners. But if you indent the expressions making up the body of a function you can spread them out over multiple lines. Just be sure to use spaces, not tabs to indent!
 
-Whatever is indented below the let binding line forms the body of it. Of course the same indentation level is required for all lines. This helps to let your code look tidy. No more quibbling about such details of code formatting. No more machting curly braces.
+Whatever is indented below the let binding line forms the body of it. Of course the same indentation level is required for all lines. This helps to let your code look tidy. No more quibbling about such details of code formatting. No more matching curly braces.
 
 Since `if` returns a result, both the `then` and the `else` branch need to be present and deliver a value of the same type. That's why
 
@@ -62,7 +62,7 @@ Here's such a kata, almost a hello-world-kata for any [coding dojo](http://codin
 
 Read the full description [here](https://app.box.com/s/kvrd51oykrob44xv2t379k98ay9ai568). It just takes two minutes.
 
-You probably already envison a solution to this problem in your regular programming language. But how to do it in F#?
+You probably already envision a solution to this problem in your regular programming language. But how to do it in F#?
 
 To be frank, to solve the whole problem there is a puzzle piece missing. You haven't seen yet how to do iterations.
 
@@ -98,7 +98,7 @@ let fizzbuzz_number n =
     sprintf "%d" n
 ```
 
-It's just a couple of nested `if` expression.
+It's just a couple of nested `if` expressions.
 
 Although this logic serves the purpose, it's arguably not clean, not DRY. Checking for a Fizz- and Buzz-number is done in two places.
 
@@ -120,7 +120,7 @@ let fizzbuzz_number n =
     sprintf "%d" n
 ```
 
-Since they are of no interest to the outside the are defined locally within the scope of `fizzbuzz_number`. A feat not possible in many other languages including C#. But a very useful language feature, because it improves encapsulation by limiting the visibility of functions.
+Since they are of no interest to the outside, they are defined locally within the scope of `fizzbuzz_number`. A feat not possible in many other languages including C#. But a very useful language feature, because it improves encapsulation by limiting the visibility of functions.
 
 That's it. Problem solved. Or at least the first part of the problem.
 
