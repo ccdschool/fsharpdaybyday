@@ -95,8 +95,6 @@ map (fun x -> x * x) positive
 
 The list of squared values thus does not exist explicitly, but only on the stack while the recursion goes on towards the end of the original `source` list.
 
-Please note how the above implementation of `map` calls itself as the last thing in its body. That's called _tail recursion_ and is a favorable way to do recursion, because the compiler can then optimize usage of the call stack: in fact it does not grow as the recursion goes on. `map` won't ever cause a stack overflow.
-
 This is how working on lists in F# typically looks like - if you need to implement it yourself. Fortunately, though, you don't have to do that all the time. F# comes with quite an assortment of built in list functions. They are available from the `List` module like this:
 
 ```fsharp
