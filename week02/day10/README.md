@@ -118,7 +118,7 @@ And because these functions are operators you can use them infix like you're use
 (|>) 1 ((+) 2) // prefix
 ```
 
-Operators you define are by default binary or infix, i.e. they take two arguments. But if you use `!` or `?` or `~` as the first character of an operator identifier, then F# expects the function to only have one parameter and it's treated as an unary operator. As an example here an unary operator to reverse a list:
+Operators you define are by default binary or infix, i.e. they take two arguments. But if you use `!` or `?` or `~` as the first character of an operator identifier, then F# expects the function to only have one parameter and it's treated as an unary operator. As an example, here is an unary operator to reverse a list:
 
 ```fsharp
 let (!<) l = List.rev l
@@ -166,7 +166,7 @@ Somehow the compiler is not sure whether `roman` really is a `string. That's bec
 
 Maybe you have noticed: So far no explicit type information was given in any code of this tutorial. Values always had a type. But that was inferred automatically by the F# compiler.
 
-F# is a strongly typed language. However that does not mean you have to specify each and every type explicitly. If a type if obvious from a literal's definition, then F# is content with it. From that it can infer the types of values resulting from transformations.
+F# is a strongly typed language. However that does not mean you have to specify each and every type explicitly. If a type is obvious from a literal's definition, then F# is content with it. From that it can infer the types of values resulting from transformations.
 
 At least mostly. Because as you see, sometimes the type inference engine is confused and needs a little hint.
 
@@ -185,7 +185,7 @@ let (a:int) = 42
 let (f:int->int) = fun x -> x
 ```
 
-So watch out for the ominous error message _Lookup on object of indeterminate type based..._ If you encouter it, you'll need to apply a type annotation. It's best, then, to keep the scope of the annotation as narrow as possible. Let type inference do the rest. To not use type constraints makes for less coupling and less typing.
+So watch out for the ominous error message _Lookup on object of indeterminate type based..._ If you encounter it, you'll need to apply a type annotation. It's best, then, to keep the scope of the annotation as narrow as possible. Let type inference do the rest. To not use type constraints makes for less coupling and less typing.
 
 ## Solving the negation problem
 The function remaining to be refined is
@@ -194,7 +194,7 @@ The function remaining to be refined is
 let negate_smaller_values values = // ...
 ```
 
-How should that be done? The input is a list of values, e.g. `[10; 50; 1; 1]`, of which some elements should be changed. Only if a value is smaller than the next if should be negated, e.g `[-10; 50; 1; 1]`.
+How should that be done? The input is a list of values, e.g. `[10; 50; 1; 1]`, of which some elements should be changed. Only if a value is smaller than the next should it be negated, e.g `[-10; 50; 1; 1]`.
 
 Given the index of an element it thus needs to be compared to the element at index+1.
 
@@ -214,7 +214,7 @@ That's why this solution sticks to arrays all the way through. Even though lists
 
 Note, that `List.iter` does not refer to the digit values but to a range of indexes given as a list.
 
-And the function stays true to the maxime of immutability. It does not change the input array but copies it before applying negation.
+And the function stays true to the maxim of immutability. It does not change the input array but copies it before applying negation.
 
 As usual you can find the complete source code in the [repo](src/convertroman/Program.fs).
 
