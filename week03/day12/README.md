@@ -45,7 +45,7 @@ match someValue with
 
 If a pattern matches a value its expression gets evaluated. Of course all expressions must return the same type of data.
 
-Patterns can be constant values like `true` and `false`. _And the list of patterns needs to be exaustive!_ That means: all possible values need to be covered by at least one pattern. For a given value of type `bool` that's only `true` and `false`. But what, if `match` was to compare patterns to just `answer`?
+Patterns can be constant values like `true` and `false`. _And the list of patterns needs to be exhaustive!_ That means: all possible values need to be covered by at least one pattern. For a given value of type `bool` that's only `true` and `false`. But what, if `match` was to compare patterns to just `answer`?
 
 ```fsharp
 match answer with
@@ -97,7 +97,7 @@ Or select a list according to its element values:
 let l = [2; 4; 6]
 
 match l with
-| [] -> ... // checkf for empty list
+| [] -> ... // check for empty list
 | [2; 4; 6] -> ...
 | [1; 3; 5] -> ...
 | _ -> ...
@@ -106,7 +106,7 @@ match l with
 ### Structure matching
 This is pretty nifty already, but `match` can do even more. So far you've seen value patterns: a given value is compared to other values, the patterns.
 
-Often, though, the pieces of a structure or collection value are not known (or are not important). Rather you're interested in it's structure. Take a list for example. How do you decompose a list? You can do it like this:
+Often, though, the pieces of a structure or collection value are not known (or are not important). Rather you're interested in its structure. Take a list for example. How do you decompose a list? You can do it like this:
 
 ```fsharp
 let head = l.Head
@@ -228,7 +228,7 @@ let fizzbuzz i =
     | x -> x.ToString()
 ```
 
-With guarded or conditional matches `match` truely becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use `if-then-else` less and less. It will become more of just a ternary operator used in expressions, e.g.
+With guarded or conditional matches `match` truly becomes the decision making workhorse feature of F#. Once you get the hang of it you'll find you'll use `if-then-else` less and less. It will become more of just a ternary operator used in expressions, e.g.
 
 ```fsharp
 let line' = line + (if line = "" then "" else ",") + word
@@ -245,7 +245,7 @@ let fizzbuzz = function
     | x -> x.ToString()
 ```
 
-You can drop the singe function parameter as well as `match ... with`. Instead write `function` after the `=` of a let binding followed by the patterns.
+You can drop the single function parameter as well as `match ... with`. Instead write `function` after the `=` of a let binding followed by the patterns.
 
 This kind of match-function can be used wherever a function value (lambda expression) is allowed, e.g.
 
@@ -255,7 +255,7 @@ This kind of match-function can be used wherever a function value (lambda expres
 
 As you can see, even the vertical bar before the first pattern can be dropped.
 
-This also works for functions with more than parameter like `pair'` above. Just be sure to pass in the value to match as the last parameter:
+This also works for functions with more than one parameter like `pair'` above. Just be sure to pass in the value to match as the last parameter:
 
 ```
 let pair l =
