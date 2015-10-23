@@ -59,7 +59,7 @@ Follow this tutorial on our Twitter account [@ccd_school](https://twitter.com/cc
 
 ***
 
-Thanks to [Carsten König](http://gettingsharper.de) for reviewing tutorial articles.
+Thanks to [Niklas Bergius](https://github.com/palpha) and [Carsten König](http://gettingsharper.de) for their reviews, suggestions, and corrections.
 
 ***
 
