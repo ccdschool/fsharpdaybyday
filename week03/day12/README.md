@@ -290,3 +290,4 @@ fun x, y -> ...
 * Microsoft, [Match Expressions (F#)](https://msdn.microsoft.com/en-us/library/dd233242.aspx)
 * Scott Wlaschin, [Match expressions - The workhorse of F#](http://fsharpforfunandprofit.com/posts/match-expression/)
 * Wikibooks, [F Sharp Programming / Pattern Matching Basics](https://en.wikibooks.org/wiki/F_Sharp_Programming/Pattern_Matching_Basics)
+* Richard Dalton, [Active Patterns](http://www.devjoy.com/series/active-patterns/)
