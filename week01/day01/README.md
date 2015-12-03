@@ -1,3 +1,5 @@
+[Day #2 &gt;](../day02) 
+
 # Day #1 – Calling functions with literals
 Let's start our F# journey with the obligatory "Hello, World!" program ;-). Here's how it looks in the online F# editor at [tryfsharp.org](http://www.tryfsharp.org/Create):
 
