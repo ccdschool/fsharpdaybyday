@@ -1,3 +1,5 @@
+[&lt; Day #2 – Operators are functions](../day02) | [Day #4 – Naming values &gt;](../day04)
+
 # Day #3 – Functions as values
 So far, you have seen how to use some existing functions in F#. Now it's time to learn how to define your own. Enter: function literals.
 
@@ -125,3 +127,5 @@ Partial application is the reason for a function type like `int -> int -> int`. 
 Yeah, function literals and partial application can be a bit mind-bending. But then... this is very powerful stuff. You'll come to like it. And then you'll come to miss it, once you return to a single-paradigm procedural or object-oriented language.
 
 Tomorrow will be easier. Promise.
+
+[&lt; Day #2 – Operators are functions](../day02) | [Day #4 – Naming values &gt;](../day04)
