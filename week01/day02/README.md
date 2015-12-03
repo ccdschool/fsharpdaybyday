@@ -1,3 +1,5 @@
+[&lt; Day #1](../day01) | [Day #3 &gt;](../day03)
+
 # Day #2 – Operators are functions
 Yesterday, you learned how to call a simple function to write data to standard output. So far, the data were constant values given as literals of different primitive data types.
 
