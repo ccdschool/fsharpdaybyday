@@ -1,3 +1,5 @@
+[&lt; Day #3 – Functions as values](../day03) | [Day #5 – Simple decisions with if &gt;](../day05)
+
 # Day #4 – Naming values
 Today is an important day. You'll learn to gain control over your F# code. Because you can control whatever you know the name of. At least that's what fairy tales and lores of magic tell us; remember [Rumpelstiltskin](http://www.eastoftheweb.com/short-stories/UBooks/Rum.shtml)? ;-)
 
@@ -133,3 +135,5 @@ let doSomething x =
 ```
 
 This does not compromise F#'s type safety!
+
+[&lt; Day #3 – Functions as values](../day03) | [Day #5 – Simple decisions with if &gt;](../day05)

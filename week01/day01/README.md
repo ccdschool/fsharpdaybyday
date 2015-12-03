@@ -1,3 +1,5 @@
+[Day #2 – Operators are functions &gt;](../day02) 
+
 # Day #1 – Calling functions with literals
 Let's start our F# journey with the obligatory "Hello, World!" program ;-). Here's how it looks in the online F# editor at [tryfsharp.org](http://www.tryfsharp.org/Create):
 
@@ -101,3 +103,5 @@ Read more about literals [here](https://msdn.microsoft.com/en-us/library/vstudio
 ***
 
 So much for your first day of F#. Now you can write small programs sending greetings of all sorts to the world ;-).
+
+[Day #2 – Operators are functions &gt;](../day02) 
