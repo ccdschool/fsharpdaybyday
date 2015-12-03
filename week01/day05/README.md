@@ -1,3 +1,5 @@
+[&lt; Day #4 – Naming values](../day04)
+
 # Day #5 – Simple decisions with if
 Programming is about data processing, i.e. calculating values and assigning them to variables. As you've seen, the first is true also for F#; but the latter is not really how you do things in functional programming languages. But don't let this worry you too much right now.
 
@@ -146,3 +148,5 @@ As you see, it's quite easy to come up with your own small automated test framew
 ***
 
 You've put F# to real use for the first time. One of the prevalent problems of computing science has been solved. Almost, at least ;-). Let's see if we can finish it tomorrow.
+
+[&lt; Day #4 – Naming values](../day04)
