@@ -1,3 +1,6 @@
+[← Day #19 – Mutable data and list comprehension](../day19) 
+Mutable data and list comprehension
+
 # Day #20 - Units of measure
 Different types means different kinds of values and possibly different values. This helps to keep operations correct.
 
@@ -186,3 +189,4 @@ Units of measure
 * Scott Wlaschin, [Units of measure](http://fsharpforfunandprofit.com/posts/units-of-measure/)
 * Wikibooks, [F Sharp Programming / Units of Measure](https://en.wikibooks.org/wiki/F_Sharp_Programming/Units_of_Measure)
 
+[← Day #19 – Mutable data and list comprehension](../day19) 
