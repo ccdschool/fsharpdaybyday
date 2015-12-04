@@ -1,3 +1,5 @@
+[← Day #16 – Unit testing and function composition](../day16) | [Day #18 – Discriminated Unions →](../day18)
+
 # Day #17 - Active patterns
 Yesterday the focus was on gathering all the source lines to count from a list of files. That was step two in this sub-process:
 
@@ -189,3 +191,4 @@ Active patterns
 * Chris Smith, [Introduction to F# Active Patterns](http://blogs.msdn.com/b/chrsmith/archive/2008/02/21/introduction-to-f_2300_-active-patterns.aspx)
 * Scott Wlaschin, [Active patterns](http://fsharpforfunandprofit.com/posts/convenience-active-patterns/)
 
+[← Day #16 – Unit testing and function composition](../day16) | [Day #18 – Discriminated Unions →](../day18)
