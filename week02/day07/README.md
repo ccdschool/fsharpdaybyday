@@ -1,3 +1,5 @@
+[← Day #6 – Recursion](../day06) | [Day #8 – Arrays →](../day08)
+
 # Day #7 – Lists
 As you saw yesterday, it's possible to iterate over a collection of values using recursion. That's nice to know – but in many cases it's overkill. Why not write down the values directly as a collection, at least as long as it's not too many?
 
@@ -198,3 +200,5 @@ Now `fizzbuzz` is focused on conversion. What happens to the converted numbers i
 ***
 
 Lists are a very important data structure in F# programs. They'll come in handy throughout the next days when solving more problems.
+
+[← Day #6 – Recursion](../day06) | [Day #8 – Arrays →](../day08)
