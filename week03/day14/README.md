@@ -1,3 +1,5 @@
+[← Day #13 – Option type](../day13) | [Day #15 – Modules and namespaces →](../day15)
+
 # Day #14 - Exceptions
 So much can go wrong at runtime. What can you do to mitigate the effects? If the error is signaled by an exception, then you can catch the exception and log it. F# offers a `try...with` expression for that similar to `try...catch` in C#.
 
@@ -193,3 +195,5 @@ Returning "nothing" from functions
 Releasing resources
 
 * Microsoft, [Resource Management: The use Keyword (F#)](https://msdn.microsoft.com/en-us/library/dd233240.aspx)
+
+[← Day #13 – Option type](../day13) | [Day #15 – Modules and namespaces →](../day15)
