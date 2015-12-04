@@ -1,3 +1,5 @@
+[← Day #18 – Discriminated Unions](../day18) | [Day #20 – Units of measure →](../day20)
+
 # Day #19 - Mutable data and list comprehension
 You remember the exercise from [day #15](https://github.com/ccdschool/fsharpdaybyday/tree/master/week03/day15)? There is still one problem to solve: counting the non-comment and non-whitespace lines.
 
@@ -223,3 +225,5 @@ Mutable data
 List comprehensions
 
 * Wikibooks, [F Sharp Programming - Lists](https://en.wikibooks.org/wiki/F_Sharp_Programming/Lists)
+
+[← Day #18 – Discriminated Unions](../day18) | [Day #20 – Units of measure →](../day20)
