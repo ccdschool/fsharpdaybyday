@@ -1,3 +1,5 @@
+[← Day #11 – Type aliases and record types](../day11) | [Day #13 – Option type →](../day13)
+
 # Day #12 - Pattern matching
 Today you'll learn about one of the most important features of any Functional Programming language: pattern matching.
 
@@ -291,3 +293,5 @@ fun x, y -> ...
 * Scott Wlaschin, [Match expressions - The workhorse of F#](http://fsharpforfunandprofit.com/posts/match-expression/)
 * Wikibooks, [F Sharp Programming / Pattern Matching Basics](https://en.wikibooks.org/wiki/F_Sharp_Programming/Pattern_Matching_Basics)
 * Richard Dalton, [Active Patterns](http://www.devjoy.com/series/active-patterns/)
+
+[← Day #11 – Type aliases and record types](../day11) | [Day #13 – Option type →](../day13)
