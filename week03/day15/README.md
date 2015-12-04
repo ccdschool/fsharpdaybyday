@@ -1,3 +1,5 @@
+[← Day #14 – Exceptions](../day14) | [Day #16 – Unit testing and function composition →](../../week04/day16)
+
 # Day #15 - Modules and namespaces
 After two days of "just theory" it's time again for some practice. Here's a new challenge for you: the [application kata "LOC Counter"](https://app.box.com/s/zwwwlyex8bvf0wq1pn9tmbzryhrla51i).
 
@@ -286,3 +288,5 @@ Modularization is an important aspect of software development. Now you know how 
 * Microsoft, [Modules (F#)](https://msdn.microsoft.com/en-us/library/dd233221.aspx)
 * Scott Wlaschin, [Organizing modules in a project](http://fsharpforfunandprofit.com/posts/recipe-part3/)
 * Wikibooks, [F Sharp Programming / Modules and Namespaces](https://en.wikibooks.org/wiki/F_Sharp_Programming/Modules_and_Namespaces)
+
+[← Day #14 – Exceptions](../day14) | [Day #16 – Unit testing and function composition →](../../week04/day16)
