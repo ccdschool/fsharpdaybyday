@@ -1,3 +1,5 @@
+[← Day #17 – Active patterns](../day17) | [Day #19 – Mutable data and list comprehension →](../day19)
+
 # Day #18 - Discriminated Unions
 Yesterday's Active Patterns are strange, aren't they? But they are cool, too. A powerful feature of F# to encapsulate decision making. But wait, there's more!
 
@@ -223,3 +225,4 @@ Discriminated Unions
 * Stackoverflow, [When to use Discriminates Union vs Record Type in F#](http://stackoverflow.com/questions/17291932/when-to-use-a-discriminate-union-vs-record-type-in-f)
 * Wikibooks, [F Sharp Programming / Discriminated Unions](https://en.wikibooks.org/wiki/F_Sharp_Programming/Discriminated_Unions)
 
+[← Day #17 – Active patterns](../day17) | [Day #19 – Mutable data and list comprehension →](../day19)
