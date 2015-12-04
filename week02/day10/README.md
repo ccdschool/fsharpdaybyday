@@ -1,3 +1,5 @@
+[← Day #9 – Tuples](../day09) | [Day #11 – Type aliases and record types →](../../week03/day11)
+
 # Day #10 – Operator definition and type constraints
 The next feature of the "Convert roman" kata is to actually do a conversion: convert from a roman number to an arabic one, e.g. XLII to 42.
 
@@ -226,3 +228,5 @@ Only one feature to go. That's tomorrow's topic. And you'll learn more about def
 * Microsoft, [Operator Overloading (F#)](https://msdn.microsoft.com/en-us/library/dd233204.aspx)
 * Wikibooks, [F Sharp Programming / Operator Overloading](https://en.wikibooks.org/wiki/F_Sharp_Programming/Operator_Overloading)
 * Scott Wlaschin, [Understanding type inference](http://fsharpforfunandprofit.com/posts/type-inference/)
+
+[← Day #9 – Tuples](../day09) | [Day #11 – Type aliases and record types →](../../week03/day11)
