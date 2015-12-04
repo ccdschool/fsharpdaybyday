@@ -1,3 +1,5 @@
+[← Day #15 – Modules and namespaces](../../week03/day15) | [Day #17 – Active patterns →](../day17)
+
 # Day #16 - Unit testing and function composition
 Yesterday's challenge has not fully been solved. Only a rough solution has been sketched. Some drill down and more detailed implementation is in order.
 
@@ -151,3 +153,5 @@ Function composition
 Unit testing
 
 * Scott Wlaschin, [Use F# to unit tests programmatically](http://fsharpforfunandprofit.com/posts/low-risk-ways-to-use-fsharp-at-work-3/#test-runner)
+
+[← Day #15 – Modules and namespaces](../../week03/day15) | [Day #17 – Active patterns →](../day17)

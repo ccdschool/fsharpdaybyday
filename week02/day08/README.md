@@ -1,3 +1,5 @@
+[← Day #7 – Lists](../day07) | [Day #9 – Tuples →](../day09)
+
 # Day #8 – Arrays
 Learning a language is easier when you know why, when you have a goal. That's why today's lesson starts with a kata. First the problem, then an introduction to helpful language features.
 
@@ -141,3 +143,5 @@ PS. Just in case you want to know: you don't really need an IDE for this kind of
 ![](images/w02d08b.png)
 
 The compiler comes with Mono, like the C# compiler.
+
+[← Day #7 – Lists](../day07) | [Day #9 – Tuples →](../day09)

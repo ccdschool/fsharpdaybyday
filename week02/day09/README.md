@@ -1,3 +1,5 @@
+[← Day #8 – Arrays](../day08) | [Day #10 – Operator definition and type constraints →](../day10)
+
 # Day #9 – Tuples
 Today we'll focus on just one feature of the ["Convert roman" kata](https://app.box.com/s/z07b8gr6e1ngvb3cg7ps78zy2ddi3vx1): determine the type of number to be converted. Is it a roman number or an arabic one?
 
@@ -167,3 +169,5 @@ Four out of six features implemented! Great! And being able to tap into the powe
 * Scott Wlaschin, [Tuples – Multiplying types together](http://fsharpforfunandprofit.com/posts/tuples/)
 * Wikibooks, [F Sharp Programming / Tuples and Records](https://en.wikibooks.org/wiki/F_Sharp_Programming/Tuples_and_Records)
 * Microsoft, [Tuples (F#)](https://msdn.microsoft.com/de-de/library/dd233200.aspx)
+
+[← Day #8 – Arrays](../day08) | [Day #10 – Operator definition and type constraints →](../day10)

@@ -1,3 +1,5 @@
+[← Day #5 – Simple decisions with if](../../week01/day05) | [Day #7 – Lists →](../day07)
+
 # Day #6 – Recursion
 I'm sure you're keen to finish the ["FizzBuzz" code kata](https://app.box.com/s/kvrd51oykrob44xv2t379k98ay9ai568). So let's think about how to do iterations.
 
@@ -110,3 +112,5 @@ See [here](src/fizzbuzz.fs) for the full source code.
 ***
 
 Recursion and functions as parameters: What a day! That's two powerful techniques of functional programming. Still, though, it seems iteration over a range of numbers should be easier than that, right? More on that tomorrow.
+
+[← Day #5 – Simple decisions with if](../../week01/day05) | [Day #7 – Lists →](../day07)
