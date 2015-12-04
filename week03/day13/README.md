@@ -1,3 +1,5 @@
+[← Day #12 – Pattern matching](../day12) | [Day #14 – Exceptions →](../day14)
+
 # Day #13 - Option type
 What do you do when things are not going as expected? All's well as long as _some_ expected result has been produced, but if _none_ was reached, then you change the course of your logic.
 
@@ -195,3 +197,5 @@ But of course good old exceptions have their use, too. Tomorrow you'll learn abo
 ### Read more
 * Microsoft, [Options (F#)](https://msdn.microsoft.com/en-us/library/dd233245.aspx)
 * Scott Wlaschin, [The Option type - And why it is not null or nullable](http://fsharpforfunandprofit.com/posts/the-option-type/)
+
+[← Day #12 – Pattern matching](../day12) | [Day #14 – Exceptions →](../day14)
