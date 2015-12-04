@@ -1,5 +1,4 @@
 [← Day #10 – Operator definition and type constraints](../../week02/day10) | [Day #12 – Pattern matching →](../day12)
-Operator definition and type constraints
 
 # Day #11 - Type aliases and record types
 Today's the day to implement the final feature of the "Convert roman" kata: converting arabic numbers to roman numbers.
