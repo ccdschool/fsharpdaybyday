@@ -1,5 +1,4 @@
 [← Day #19 – Mutable data and list comprehension](../day19) 
-Mutable data and list comprehension
 
 # Day #20 - Units of measure
 Different types means different kinds of values and possibly different values. This helps to keep operations correct.
