@@ -108,7 +108,8 @@ Also, tuples are the way to go when you want to circumvent partial application. 
 let translate (x, y) d =
   (x + d, y + d)
 
-let a = translate (2, 5) 3
+let (a, b) = translate (2, 5) 3
+printfn "(%d, %d)" a b
 ```
 
 A partial application of `translate` is still possible – but not with regard to `x` and `y`. Either both are provided or none of them.
