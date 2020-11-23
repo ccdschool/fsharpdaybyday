@@ -1,7 +1,7 @@
 [Day #2 – Operators are functions →](../day02) 
 
 # Day #1 – Calling functions with literals
-Let's start our F# journey with the obligatory "Hello, World!" program ;-). Here's how it looks in the online F# editor at [tryfsharp.org](http://www.tryfsharp.org/Create):
+Let's start our F# journey with the obligatory "Hello, World!" program ;-). Here's how it looks in the online F# editor at [try.fsharp.org](https://try.fsharp.org/):
 
 ![](images/w01d01a.png)
 
